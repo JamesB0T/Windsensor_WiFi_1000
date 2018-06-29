@@ -6,9 +6,9 @@ I bublished the project in the german sail forum www.segeln-forum.de and found a
 
 This was my conditions for the new windsensor:
 
-    Measuring from wind speed and wind direction
-    Robust mechanics
-    Weight <= 200g
+    * Measuring from wind speed and wind direction
+    * Robust mechanics
+    * Weight <= 200g
     Smal enought for a 22 feed sailboad
     Weatherproof and UV stable
     Visible by night
