@@ -4,7 +4,7 @@ My windsensor was defect in the last winter time 2018 by a big storm in Netherla
 
 I bublished the project in the german sail forum www.segeln-forum.de and found a lot of interested poeple. Afte a half year was all mecanical components and elektrical shematics finished and I clould try the first windsensor successfully on my sailboat.
 
-This was my conditions for the new windsensor:
+These are my conditions for the new windsensor:
 
     * Measuring from wind speed and wind direction
     * Robust mechanics
