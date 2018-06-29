@@ -4,7 +4,7 @@ My windsensor was defect in the last winter time 2018 by a big storm in Netherla
 
 ![alt text](Pictures/Windsensor2.png)
 
-I bublished the project in the german sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested poeple. Afte a half year was all mecanical components and elektrical shematics finished and I could try the first windsensor successfully on my sailboat.
+I bublished the project in the german sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested poeple. Afte a half year was all mechanical components and elektrical shematics finished and I could try the first windsensor successfully on my sailboat.
 
 These are my conditions for the new windsensor:
 
