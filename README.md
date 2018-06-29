@@ -9,16 +9,16 @@ This was my conditions for the new windsensor:
     * Measuring from wind speed and wind direction
     * Robust mechanics
     * Weight <= 200g
-    Smal enought for a 22 feed sailboad
-    Weatherproof and UV stable
-    Visible by night
-    No cabeling for sensor signals
-    Only digital signal transmission with WiFi
-    12V power supplay from top light
-    Using a ESP8266 for WiFi and data handling
-    Update rate app. 1...2 samples per secounds
-    No onboard instrument necessary
-    Visualitation in OpenPlotter via laptop, mobile fone or tablett
-    No software installation unnecessary (display is the browser)
-    Supported protocol NMEA 0183
-    Preice <= 250 Euro
+    * Smal enought for a 22 feed sailboad
+    * Weatherproof and UV stable
+    * Visible by night
+    * No cabeling for sensor signals
+    * Only digital signal transmission with WiFi
+    * 12V power supplay from top light
+    * Using a ESP8266 for WiFi and data handling
+    * Update rate app. 1...2 samples per secounds
+    * No onboard instrument necessary
+    * Visualitation in OpenPlotter via laptop, mobile fone or tablett
+    * No software installation unnecessary (display is the browser)
+    * Supported protocol NMEA 0183
+    * Preice <= 250 Euro
