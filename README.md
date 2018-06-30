@@ -5,8 +5,8 @@ My windsensor was defect in the last winter time 2018 by a big storm in Netherla
 The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The patent has expired and everyone can use it. The function is very simple and use two reed magnet sensors for wind speed and wind direction. I modified the circuit and changed the sensors to two hall sensors. A ESP8266-E12 measure two time values from both sensors and calculate the wind speed and wind direction.The operating principle is very simple and tricky. It is a perfect solution of simplicity and function and a good base for the ESP8266.
 
 For a first impression see the videos:
-(Live Windsensor)[https://www.youtube.com/watch?v=ME7WqSQ8mfY]
-(Display data in OpenPlotter)[https://www.youtube.com/watch?v=0nfqlGNmgYI]
+[Live Windsensor](https://www.youtube.com/watch?v=ME7WqSQ8mfY)
+[Display data in OpenPlotter](https://www.youtube.com/watch?v=0nfqlGNmgYI)
 
 ![alt text](Pictures/Windsensor2.png)
 
