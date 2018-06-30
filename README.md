@@ -41,7 +41,7 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 
 ## What is the current status?
 
-At the moment we could finish a lot of points but not all is perfect.
+At the moment we could finish a lot of points but not all is perfect or finished.
 
 - [x] Technical recherche
 - [x] Evaluation of funktion
