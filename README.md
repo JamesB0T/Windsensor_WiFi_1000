@@ -8,7 +8,7 @@ The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The
 
 I bublished the project in the german sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested poeple. Afte a half year was all mechanical components and elektrical shematics finished and I could try the first windsensor successfully on my sailboat.
 
-##These are my conditions for the new windsensor:
+## These are my conditions for the new windsensor:
 
 * Measuring from wind speed and wind direction
 * Robust mechanics
