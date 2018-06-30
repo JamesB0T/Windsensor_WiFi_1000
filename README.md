@@ -24,3 +24,5 @@ These are my conditions for the new windsensor:
 * No software installation unnecessary (display is the browser)
 * Supported protocol NMEA 0183
 * Price <= 250 Euro
+
+I use the windsensor in combination with OpenPlotter on a Rasiberry Pi 3. OpenPlotter is a access point for WiFi devices. The windsensor connects via WiFi with OpenPlotter and send the NMEA0183 data telegrams all one second.
