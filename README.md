@@ -78,7 +78,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Black prototype
 - [ ] Production Zero series
     - [x] DIY Kits
-    - [] Finished windsensor
+    - [ ] Finished windsensor
 - [ ] Shipping Zero Series
 - [ ] Documentatio
     - [x] Technical description
