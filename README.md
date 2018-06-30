@@ -39,6 +39,66 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 
 ![alt text](Pictures/OpenPlotter_InstrumetPanel.png)
 
+## What is the current status?
+
+At the moment we could finish a lot of points but not all is perfect.
+
+- [x] Technical recherche
+- [x] Evaluation of funktion
+    - [x] Hall sensors
+    - [x] Magnets
+    - [x] Proto type circuit
+    - [x] Test software
+    - [x] Web display technologies
+    - [x] 3D material test
+    - [x] Coating tests
+- [x] Mechanical design
+    - [x] 3D parts
+    - [x] Tutrning parts
+- [x] Electronic design
+    - [x] Circuit design for board
+    - [x] Board design
+    - [x] Electrical circuit design
+- [ ] Software
+    - [x] Basis funktionality
+    - [x] NMEA0183 WiFi
+    - [x] NMEA0183 Serial
+    - [x] JSON
+    - [x] Web-Updater
+    - [ ] Web-Configurator
+    - [ ] Web server as data display
+    - [ ] Andoid App
+- [x] Components ordering
+    - [x] Electronic board
+    - [x] Mechanical parts
+    - [x] Turning parts
+    - [x] Fittings
+- [x] Prototyp creation
+    - [x] White prototype
+    - [x] Black prototype
+- [ ] Production Zero series
+    - [x] DIY Kits
+    - [] Finished windsensor
+- [ ] Shipping Zero Series
+- [ ] Documentatio
+    - [x] Technical description
+    - [x] Construction manual
+    - [x] Part list
+    - [ ] User manual
+    - [ ] Data sheet
+- [ ] Application tests
+    - [x] Temperature 20...80°C
+    - [x] Vibration test by strong wind (5bft)
+    - [x] WiFi stability test
+    - [x] Connection test
+    - [x] Rain test
+    - [ ] UV radiation test
+    - [ ] Long time test
+    - [ ] Test with auto pilot
+- [ ] Certification
+    - [ ] CE Certification
+
+
 ## Questions?
 
 You have questions or suggestions then you can me contact via email under norbert-walter(at)web.de.
