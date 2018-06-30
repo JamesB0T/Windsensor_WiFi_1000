@@ -29,7 +29,7 @@ I bublished the project in the german sail forum [www.segeln-forum.de](https://w
 
 ## How can I use it?
 
-I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/openplotter) on a Rasiberry Pi 3B. OpenPlotter is a access point for WiFi devices. The windsensor connects via WiFi with OpenPlotter and send the NMEA0183 data telegrams each second. The windsensor sends 4 types of telegrams. 3 standard telegrams (MWV, VWR, VPW) and one custom telegram (INF). Under following [link](http://www.nmea.de/nmea0183datensaetze.html) you found more informations about NMEA0183. 
+I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/openplotter) on a Rasiberry Pi 3B. OpenPlotter is a access point for WiFi devices. The windsensor connects via WiFi with OpenPlotter and send the NMEA0183 data telegrams each second. The windsensor sends 4 types of telegrams. 3 standard telegrams (MWV, VWR, VPW) and one custom telegram (INF). Under following [link](http://www.nmea.de/nmea0183datensaetze.html) you find more informations about NMEA0183. 
 
 
 
