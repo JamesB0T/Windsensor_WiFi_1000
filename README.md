@@ -95,6 +95,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [ ] UV radiation test
     - [ ] Long time test
     - [ ] Test with auto pilot
+    - [ ] User experiences
 - [ ] Certification
     - [ ] CE Certification
 
