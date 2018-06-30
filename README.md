@@ -20,7 +20,7 @@ I bublished the project in the german sail forum [www.segeln-forum.de](https://w
 * Only digital signal transmission with WiFi
 * 12V power supplay from top light
 * Using a ESP8266 for WiFi and data handling
-* Update rate app. 1...2 samples per secounds
+* Update rate app. 1...2 samples per second
 * No onboard instrument necessary
 * Visualitation in OpenPlotter via laptop, mobile fone or tablett
 * No software installation unnecessary (display is the browser)
