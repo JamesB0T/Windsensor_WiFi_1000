@@ -7,6 +7,7 @@ The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The
 For a first impression see the videos:
 
 [Live Windsensor](https://www.youtube.com/watch?v=ME7WqSQ8mfY) 
+
 [Display data in OpenPlotter](https://www.youtube.com/watch?v=0nfqlGNmgYI) 
 
 ![alt text](Pictures/Windsensor2.png)
