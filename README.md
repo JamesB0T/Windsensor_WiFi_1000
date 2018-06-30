@@ -38,3 +38,7 @@ I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/op
 It is possible with each network device connect to OpenPlotter. A simple browser shows all data from the windsensor. I use a small 7" Android tablet as display for my windsensor.
 
 ![alt text](Pictures/OpenPlotter_InstrumetPanel.png)
+
+## Questions?
+
+You have questions or suggestions then you can contact me via email under norbert-walter(at)web.de.
