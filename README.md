@@ -41,4 +41,4 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 
 ## Questions?
 
-You have questions or suggestions then you can contact me via email under norbert-walter(at)web.de.
+You have questions or suggestions then you can me contact via email under norbert-walter(at)web.de.
