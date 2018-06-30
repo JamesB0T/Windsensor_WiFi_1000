@@ -54,7 +54,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Coating tests
 - [x] Mechanical design
     - [x] 3D parts
-    - [x] Tutrning parts
+    - [x] Turning parts
 - [x] Electronic design
     - [x] Circuit design for board
     - [x] Board design
