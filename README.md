@@ -108,4 +108,4 @@ At the moment we could finish a lot of points but not all is perfect or finished
 
 ## Questions?
 
-You have questions or suggestions then you can me contact via email under norbert-walter(at)web.de.
+You have questions or suggestions then you can contact me via email under norbert-walter(at)web.de.
