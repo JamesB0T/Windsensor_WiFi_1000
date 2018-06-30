@@ -58,7 +58,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
 - [x] Electronic design
     - [x] Circuit design for board
     - [x] Board design
-    - [x] Electrical circuit design
+    - [x] Customer sample circuit
 - [ ] Software
     - [x] Basis funktionality
     - [x] NMEA0183 WiFi
