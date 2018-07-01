@@ -21,7 +21,7 @@ I bublished the project in the german sail forum [www.segeln-forum.de](https://w
 * Measuring from wind speed and wind direction
 * Robust mechanics
 * Weight <= 200g
-* Small enought for a 22 feed sailboad
+* Small enought for a 22 feed sailboat
 * Weatherproof and UV stable
 * Visible by night
 * No cabeling for sensor signals
