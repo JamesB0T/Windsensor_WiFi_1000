@@ -64,7 +64,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] 3D parts
     - [x] Turning parts
 - [x] Electronic design
-    - [x] Circuit design for board
+    - [x] Circuit design
     - [x] Board design
     - [x] Customer sample circuit
 - [ ] Software
@@ -88,7 +88,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] DIY Kits
     - [ ] Finished windsensor
 - [ ] Shipping Zero Series
-- [ ] Documentatio
+- [ ] Documentation
     - [x] Technical description
     - [x] Construction manual
     - [x] Part list
