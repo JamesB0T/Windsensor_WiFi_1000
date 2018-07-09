@@ -52,7 +52,7 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 At the moment we could finish a lot of points but not all is perfect or finished.
 
 - [x] Technical recherche
-- [x] Evaluation of funktion
+- [x] Evaluation of function
     - [x] Hall sensors
     - [x] Magnets
     - [x] Proto type circuit
