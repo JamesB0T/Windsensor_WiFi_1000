@@ -100,6 +100,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] WiFi stability test
     - [x] Connection test
     - [x] Rain test
+    - [ ] IPX6 Water resistance test
     - [ ] UV radiation test
     - [ ] Long time test
     - [ ] Test with auto pilot
