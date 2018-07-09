@@ -86,14 +86,14 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Black prototype
 - [ ] Production Zero series
     - [x] DIY Kits
-    - [ ] Assembled windsensor
+    - [x] Assembled windsensor
 - [ ] Shipping Zero Series
 - [ ] Documentation
     - [x] Technical description
     - [x] Construction manual
     - [x] Part list
     - [ ] User manual
-    - [ ] Data sheet
+    - [x] Data sheet
 - [ ] Application tests
     - [x] Temperature 20...80°C
     - [x] Vibration test by strong wind (5bft)
