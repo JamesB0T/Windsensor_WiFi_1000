@@ -71,7 +71,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Circuit design
     - [x] Board design
     - [x] Customer sample circuit
-- [ ] Software
+- [x] Software
     - [x] Basis funktionality
     - [x] NMEA0183 WiFi
     - [x] NMEA0183 Serial
