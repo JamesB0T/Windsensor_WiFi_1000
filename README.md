@@ -47,6 +47,10 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 
 ![alt text](Pictures/OpenPlotter_InstrumetPanel.png)
 
+(2018-11-02) Now is a Android App available. The App is a WebApp and connect direct the webserver in the windsensor for displaying all data.
+
+![alt text](Pictures/OpenPlotter_InstrumetPanel.png)
+
 ## What is the current status?
 
 At the moment we could finish a lot of points but not all is perfect or finished.
@@ -73,9 +77,9 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] NMEA0183 Serial
     - [x] JSON
     - [x] Web-Updater
-    - [ ] Web-Configurator
-    - [ ] Web server as data display
-    - [ ] Andoid App
+    - [x] Web-Configurator
+    - [x] Web server as data display
+    - [x] Andoid App
 - [x] Components ordering
     - [x] Electronic board
     - [x] Mechanical parts
@@ -101,8 +105,8 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Connection test
     - [x] Rain test
     - [ ] IPX6 Water resistance test
-    - [ ] UV radiation test
-    - [ ] Long time test
+    - [x] UV radiation test
+    - [x] Long time test
     - [ ] Test with auto pilot
     - [ ] User experiences
 - [ ] Certification
