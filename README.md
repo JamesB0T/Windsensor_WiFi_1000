@@ -49,7 +49,7 @@ It is possible with each network device connect to OpenPlotter. A simple browser
 
 (2018-11-02) Now is a Android App available. The App is a WebApp and connect direct the webserver in the windsensor for displaying all data.
 
-![alt text](Android-App/Screenshot_Windsensor_App.png)
+![alt text](Android-App/Screenshot_Windsensor_App2.png)
 
 ## What is the current status?
 
