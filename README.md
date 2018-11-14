@@ -9,15 +9,8 @@ The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The
 If you want to help or you think the project is usefully then you can donate. Thanks for your support!
 
 ![alt text](Pictures/Donate.gif)
-[Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=QT54MSJR6QU7Y)
 
-<br><br>
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-<input type="hidden" name="cmd" value="_s-xclick" />
-<input type="hidden" name="hosted_button_id" value="5QZJZBM252F2L" />
-<input type="image" src="Pictures/Donate.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
-<img alt="Pictures/Donate.gif" border="0" src="" width="1" height="1" />
-</form>
+[Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5QZJZBM252F2L)
 
 For a first impression see the videos:
 
