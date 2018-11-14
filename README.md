@@ -6,6 +6,15 @@ For designing i take the online CAD program [Onshape](https://www.onshape.com). 
 
 The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The patent has expired and everyone can use it. The function is very simple and use two reed magnet sensors for wind speed and wind direction. I modified the circuit and changed the sensors to two hall sensors. A ESP8266-E12 measure two time values from both sensors and calculate the wind speed and wind direction.The operating principle is very simple and tricky. It is a perfect solution of simplicity and function and a good base for the ESP8266.
 
+If you want to help or you think the project is usefully then you can donate. Thanks for your support!
+<br><br>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="5QZJZBM252F2L" />
+<input type="image" src="https://www.paypalobjects.com/en_US/DK/i/btn/btn_donateCC_LG.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Donate with PayPal button" />
+<img alt="" border="0" src="https://www.paypal.com/en_DE/i/scr/pixel.gif" width="1" height="1" />
+</form>
+
 For a first impression see the videos:
 
 [Live Windsensor](https://www.youtube.com/watch?v=ME7WqSQ8mfY) 
