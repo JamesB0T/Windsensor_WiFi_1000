@@ -8,7 +8,7 @@ The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The
 
 If you want to help or you think the project is usefully then you can donate. Thanks for your support!
 
-![alt text](Pictures/Donate.gif)
+![Donate](Pictures/Donate.gif)
 
 [Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5QZJZBM252F2L)
 
@@ -18,7 +18,7 @@ For a first impression see the videos:
 
 [Display data in OpenPlotter](https://www.youtube.com/watch?v=0nfqlGNmgYI) 
 
-![alt text](Pictures/Windsensor2.png)
+![Windsensor](Pictures/Windsensor2.png)
 
 I bublished the project in the german sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested poeple. Afte a half year was all mechanical components and elektrical shematics finished and I could try the first windsensor successfully on my sailboat.
 
@@ -47,15 +47,15 @@ I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/op
 
 
 
-![alt text](Pictures/Windsensor_Raspi_Handy_Laptop.png)
+![Connectivity](Pictures/Windsensor_Raspi_Handy_Laptop.png)
 
 It is possible with each network device connect to OpenPlotter. A simple browser shows all data from the windsensor. I use a small 7" Android tablet as display for my windsensor.
 
-![alt text](Pictures/OpenPlotter_InstrumetPanel.png)
+![Instrument panel](Pictures/OpenPlotter_InstrumetPanel.png)
 
 (2018-11-02) Now is a Android App available. The App is a WebApp and connect direct the webserver in the windsensor for displaying all data.
 
-![alt text](Android-App/Screenshot_Windsensor_App2.png)
+![Android App](Android-App/Screenshot_Windsensor_App2.png)
 
 ## What is the current status?
 
