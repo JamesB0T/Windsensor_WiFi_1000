@@ -1,12 +1,12 @@
-## The Windsensor WiFi 1000 is an OpenSource project to build windsensor for sailboats with 3D printer parts and a ESP8266
+## The Windsensor WiFi 1000 is an OpenSource project to build a wind transducer for sailboats using 3D printer parts and an ESP8266 microcontroller
 
-My windsensor was damaged in winter 2018 caused by a big storm in Netherlands. I needed a new windsensor for my small sailboat. It is a Dehlya 22. I searched an interesting and useful project for my new 3D printer. At first I tried to build the hemispheric parts and the rotor. After successful 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinese model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
+My wind transducer got damaged in winter 2018 by a big storm in Netherlands. I needed a new transducer for my small sailboat. It is a Dehlya 22. I looked for an interesting and useful project for my new 3D printer. At first I tried to build the hemispheric parts and the rotor. After successful 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinese model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
 
 For designing I use the online CAD program [Onshape](https://www.onshape.com). It is easy, powerfull and innovative. You just need a PC and a web browser with 3D function (Web GL). You find my project under the term "windsensor". Copy it to your own workplace so you can view and modify the 3D model.
 
-This windsensor is based on a [patent](Patents/US5231876.pdf) from Peet Bros Inc. The patent has expired and everyone can use it. The function is very simple using two reed magnet sensors for wind speed and wind direction. I modified the circuit and used two hall sensors instead. An ESP8266-E12 measures values from both sensors and calculates wind speed and wind direction. The operating principle is amazingly simple and smart. It is a perfect combination of simplicity and effectiveness and sets up a good task for the ESP8266 microcontroller.
+This windsensor is based on a [patent](Patents/US5231876.pdf) from Peet Bros Inc. The patent has expired and everyone can use it. The function is very simple using two reed magnet sensors for wind speed and wind direction. I modified the circuit and used two hall sensors instead. An ESP8266-E12 microcontroller measures values from both sensors and calculates wind speed and wind direction. The operating principle is amazingly simple and smart. It is a perfect combination of simplicity and effectiveness and sets up a good task for the ESP8266 microcontroller.
 
-If you want to help or consider this project useful, please donate. Thanks for your support!
+If you like to help or consider this project useful, please donate. Thanks for your support!
 
 ![Donate](Pictures/Donate.gif)
 
@@ -20,7 +20,7 @@ For a first impression see the videos:
 
 ![Windsensor](Pictures/Windsensor2.png)
 
-I published the project in the German sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested people. After half a year all mechanical components and electrical schematics were completed and I successfully launched the first windsensor on my sailboat.
+I published and discussed this project in the German sailing forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found many interested people. Half a year later, all mechanical components and electrical schematics were completed and I successfully launched the first windsensor on my sailboat.
 
 ## These were the initial requirements for the new windsensor:
 
@@ -49,17 +49,17 @@ I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/op
 
 ![Connectivity](Pictures/Windsensor_Raspi_Handy_Laptop.png)
 
-Every network device can connect to OpenPlotter. A simple browser displays all data from the windsensor. I use a small 7" Android tablet as display for my windsensor.
+Network devices can be connected to OpenPlotter. A simple browser displays all data from the wind transducer. I use a 7" Android tablet as display for my windsensor.
 
 ![Instrument panel](Pictures/OpenPlotter_InstrumetPanel.png)
 
-(2018-11-02) Now also available as Android App. It is is a WebApp and connects directly to the windsensor to display all data.
+(2018-11-02) Now also available as Android App. It is is a WebApp connecting directly to the windsensor to display all data.
 
 ![Android App](Android-App/Screenshot_Windsensor_App2.png)
 
 ## What is the current status?
 
-So far I have completed many points still not all is perfect or finished.
+I have completed many tasks but still not everything is perfect or finished so far.
 
 - [x] Technical recherche
 - [x] Evaluation of function
@@ -121,4 +121,4 @@ So far I have completed many points still not all is perfect or finished.
 
 ## Questions?
 
-For questions or suggestions please contact me via email at norbert-walter(at)web.de.
+For questions or suggestions please get in contact via email at norbert-walter(at)web.de.
