@@ -1,6 +1,6 @@
 ## The Windsensor WiFi 1000 is an OpenSource project to build a wind transducer for sailboats using 3D printer parts and an ESP8266 microcontroller
 
-My wind transducer got damaged in winter 2017/2018 by a big storm in Netherlands. I needed a new transducer for my small sailboat. It is a Dehlya 22. I looked for an interesting and useful project for my new 3D printer. At first I tried to build the hemispheric parts and the rotor. After successful 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinese model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
+My wind transducer got damaged in winter 2017/2018 by a big storm in Netherlands. I needed a new transducer for my small sailboat. It is a Dehlya 22. At the same time I was looking for an interesting and useful project for my new 3D printer. At first I tried to build the hemispheric parts and the rotor. After successful 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinese model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
 
 For designing I use the online CAD program [Onshape](https://www.onshape.com). It is easy, powerfull and innovative. You just need a PC and a web browser with 3D function (Web GL). You find my project under the term "windsensor". Copy it to your own workplace so you can view and modify the 3D model.
 
