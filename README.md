@@ -59,7 +59,7 @@ Network devices can be connected to OpenPlotter. A simple browser displays all d
 
 ## What is the current status?
 
-I have completed many tasks but still not everything is perfect or finished so far.
+I have completed many tasks but still not everything is perfect so far.
 
 - [x] Technical recherche
 - [x] Evaluation of function
