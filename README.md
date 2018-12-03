@@ -1,12 +1,12 @@
-## The Windsensor WiFi 1000 is a OpenSource project to build windsensor for sailboats with 3D printer parts and a ESP8266
+## The Windsensor WiFi 1000 is an OpenSource project to build a wind transducer for sailboats using 3D printer parts and an ESP8266 microcontroller
 
-My windsensor was defect in the last winter time 2018 by a big storm in Netherlands. I needed a new windsensor for my small sailboat. It is a Dehlya 22. I seached a interesting and usefully project for my new 3D printer. At first I try to build the hemispheric parts and the rotor. After successfully 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinise model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
+My wind transducer got damaged in winter 2017/2018 by a big storm in Netherlands. I needed a new transducer for my small sailboat. It is a Dehlya 22. At the same time I was looking for an interesting and useful project for my new 3D printer. At first I tried to build the hemispheric parts and the rotor. After successful 3D printing I was amazed about the good quality and mechanical precision. My printer is a low cost Chinese model JGAurora in prusa design. At this point I started my project with the windsensor and I designed all parts in 3D for my printer.
 
-For designing i take the online CAD program [Onshape](https://www.onshape.com). It is easy, powerfull and innovative. You only need a PC and a web browser with 3D function (Web GL). You find my project under the term "windsensor". Copy it in your own work place and you can view and modify the 3D model.
+For designing I use the online CAD program [Onshape](https://www.onshape.com). It is easy, powerfull and innovative. You just need a PC and a web browser with 3D function (Web GL). You find my project under the term "windsensor". Copy it to your own workplace so you can view and modify the 3D model.
 
-The windsensor based on a [patent](Patents/US5231876.pdf) from PeetBros Inc. The patent has expired and everyone can use it. The function is very simple and use two reed magnet sensors for wind speed and wind direction. I modified the circuit and changed the sensors to two hall sensors. A ESP8266-E12 measure two time values from both sensors and calculate the wind speed and wind direction.The operating principle is very simple and tricky. It is a perfect solution of simplicity and function and a good base for the ESP8266.
+This windsensor is based on a [patent](Patents/US5231876.pdf) from Peet Bros Inc. The patent has expired and everyone can use it. The function is very simple using two reed magnet sensors to detect wind speed and wind direction. I modified the circuit and used two hall sensors instead. An ESP8266-E12 microcontroller processes readings from both sensors and calculates wind speed and wind direction. The operating principle is amazingly simple and smart. It is a perfect combination of simplicity and effectiveness and poses an attractive task for the ESP8266 microcontroller.
 
-If you want to help or you think the project is usefully then you can donate. Thanks for your support!
+If you like to help or consider this project useful, please donate. Thanks for your support!
 
 ![Donate](Pictures/Donate.gif)
 
@@ -20,52 +20,52 @@ For a first impression see the videos:
 
 ![Windsensor](Pictures/Windsensor2.png)
 
-I bublished the project in the german sail forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found a lot of interested poeple. Afte a half year was all mechanical components and elektrical shematics finished and I could try the first windsensor successfully on my sailboat.
+I published and discussed this project in the German sailing forum [www.segeln-forum.de](https://www.segeln-forum.de/board1-rund-ums-segeln/board35-bootstechnik-und-elektronik/67401-windsensor-diy/) and found many interested people. Half a year later, all mechanical components and electrical schematics were completed and I successfully launched the first windsensor on my sailboat.
 
-## These are my conditions for the new windsensor:
+## These were the initial requirements for the new windsensor:
 
-* Measuring from wind speed and wind direction
+* Measuring wind speed and wind direction
 * Robust mechanics
 * Weight < 200g
-* Small enought for a 22 feed sailboat
+* Small enough for a 22 feet sailboat
 * Weatherproof and UV stable
 * Visible by night
-* No cabeling for sensor signals
-* Only digital signal transmission with WiFi
-* 12V power supplay from top light
+* No cabling for sensor signals
+* Digital signal transmission with WiFi only
+* 12V power supply utilizing top light power cable
 * Using a ESP8266 for WiFi and data handling
-* Update rate app. 1...2 samples per second
-* No onboard instrument necessary
-* Visualitation in OpenPlotter via laptop, mobile fone or tablett
-* No software installation unnecessary (display is the browser)
-* Supported protocol NMEA 0183
+* Update rate approx. 1...2 samples per second
+* No onboard instrument required
+* Visualisation in OpenPlotter via laptop, mobile fone or tablett
+* No extra software required (display is the browser)
+* Supporting  NMEA 0183 protocol
 * Price < 250 Euro
 
 ## How can I use it?
 
-I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/openplotter) on a Rasiberry Pi 3B. OpenPlotter is a access point for WiFi devices. The windsensor connects via WiFi with OpenPlotter and send the NMEA0183 data telegrams each second. The windsensor sends 4 types of telegrams. 3 standard telegrams (MWV, VWR, VPW) and one custom telegram (INF). Under following [link](http://www.nmea.de/nmea0183datensaetze.html) you find more informations about NMEA0183. 
+I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/openplotter) on a Raspberry Pi 3B. OpenPlotter serves as access point for WiFi devices. The windsensor connects to OpenPlotter via WiFi and transmits the NMEA0183 data telegrams every second. The windsensor sends 4 types of telegrams. 3 standard telegrams (MWV, VWR, VPW) and one custom telegram (INF). Check here [link](http://www.nmea.de/nmea0183datensaetze.html) for more information on NMEA0183. 
 
 
 
 ![Connectivity](Pictures/Windsensor_Raspi_Handy_Laptop.png)
 
-It is possible with each network device connect to OpenPlotter. A simple browser shows all data from the windsensor. I use a small 7" Android tablet as display for my windsensor.
+Network devices can be connected to OpenPlotter. A simple browser displays all data from the wind transducer. I use a 7" Android tablet as display for my windsensor.
 
 ![Instrument panel](Pictures/OpenPlotter_InstrumetPanel.png)
 
-(2018-11-02) Now is a Android App available. The App is a WebApp and connect direct the webserver in the windsensor for displaying all data.
+(2018-11-02) Now also available as Android App. It is is a WebApp connecting directly to the windsensor to display all data.
 
 ![Android App](Android-App/Screenshot_Windsensor_App2.png)
 
 ## What is the current status?
 
-At the moment we could finish a lot of points but not all is perfect or finished.
+I have completed many tasks but still not everything is perfect so far.
 
 - [x] Technical recherche
 - [x] Evaluation of function
     - [x] Hall sensors
     - [x] Magnets
-    - [x] Proto type circuit
+    - [x] Prototype circuit
     - [x] Test software
     - [x] Web display technologies
     - [x] 3D material test
@@ -78,7 +78,7 @@ At the moment we could finish a lot of points but not all is perfect or finished
     - [x] Board design
     - [x] Customer sample circuit
 - [x] Software
-    - [x] Basis funktionality
+    - [x] Basic functionality
     - [x] NMEA0183 WiFi
     - [x] NMEA0183 Serial
     - [x] JSON
@@ -121,4 +121,4 @@ At the moment we could finish a lot of points but not all is perfect or finished
 
 ## Questions?
 
-You have questions or suggestions then you can contact me via email under norbert-walter(at)web.de.
+For questions or suggestions please get in contact via email at norbert-walter(at)web.de.
