@@ -83,6 +83,8 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] NMEA0183 Serial
     - [x] JSON
     - [ ] MQTT
+    - [ ] Wind History Diagram
+    - [ ] Sensor Data Diagram
     - [x] Web-Updater
     - [x] Web-Configurator
     - [x] Web server as data display
@@ -115,7 +117,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] UV radiation test
     - [x] Long time test
     - [ ] Test with auto pilot
-    - [ ] User experiences
+    - [x] User experiences
 - [ ] Certification
     - [ ] CE Certification
 
