@@ -82,6 +82,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] NMEA0183 WiFi
     - [x] NMEA0183 Serial
     - [x] JSON
+    - [ ] MQTT
     - [x] Web-Updater
     - [x] Web-Configurator
     - [x] Web server as data display
