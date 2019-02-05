@@ -1,6 +1,6 @@
 **20190205 WiFi_Windsensor_10.bin V0.97 {+ (stable) +}**
 
-* Field with in settings page changed (to 15 characters)
+* Settings field width changed (to 15 characters)
 * Limiting sensor values for time1 and time2 < 1000 (value spike reducing)
 * WLAN quality value changed for unconnected WLAN (no connection = 0%)
 * Using relative links in all web pages (solved reference problem by different IP adresses)
