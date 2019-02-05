@@ -17,7 +17,7 @@
 * All variables in interrupt routines declared as volatile
 * All static variables declared as static
 
-**20190125 WiFi_Windsensor_8.bin V0.95 {- (faulty) -}**
+**20190125 WiFi_Windsensor_8.bin V0.95 {- (faulty critical) -}**
 
 * Firmware displaying fixed
 * Missing values in JSON solved
