@@ -36,6 +36,9 @@
 * Fix parameter settings by wind sensor start (is neccessary for new settings data structure)
 * Settings changes are not reboot save
 
+DANGER: **Danger:**
+Do not change from a older version to a newer version without installing WiFi_Windsensor_6.1.bin
+
 **20190105 NMEA_Windsensor_16_final_MyBoat.bin (stable)**
 
 * AccessPoint login problem solved
