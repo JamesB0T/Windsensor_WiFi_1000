@@ -1,10 +1,21 @@
-20180105 WiFi_Windsensor_6.1.bin V0.94 (faulty)
+20180710 NMEA_Windsensor_11_final_MyBoat.bin (faulty)
+
+* First version with fix settings (delivery state for all wind sensor assembly kits)
+* Existing AccessPoint problem
+
+20180105 NMEA_Windsensor_16_final_MyBoat.bin (stable)
+
+* AccessPoint login problem solved
+* AccessPoint is allways on and connectable
+* Only fix settings usable
+
+20180115 WiFi_Windsensor_6.1.bin V0.94 (faulty)
 
 * First version with web interface
 * Fix parameter settings by wind sensor start (is neccessary for new settings data structure)
 * Settings changes are not reboot save
 
-20180105 WiFi_Windsensor_6.2.bin V0.94 (faulty)
+20180115 WiFi_Windsensor_6.2.bin V0.94 (faulty)
 
 * First version with web interface
 * Setting changes are reboot save
@@ -25,7 +36,7 @@
 * All variables in interrupt routines declared as volatile
 * All static variables declared as static
 
-20180205 WiFi_Windsensor_10.bin V0.97 (actual)
+20180205 WiFi_Windsensor_10.bin V0.97 (stable)
 
 * Field with in settings page changed (to 15 characters)
 * Limiting sensor values for time1 and time2 < 1000 (value spike reducing)
