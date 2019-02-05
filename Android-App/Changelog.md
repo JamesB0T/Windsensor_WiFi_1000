@@ -19,3 +19,4 @@
 
 * First App version with fix connection to norbert-walter.dnshome.de
 * Usable only for Demo Software
+* No error handling implement
