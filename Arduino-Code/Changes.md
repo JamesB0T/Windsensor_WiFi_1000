@@ -2,7 +2,7 @@
 
 * Field with in settings page changed (to 15 characters)
 * Limiting sensor values for time1 and time2 < 1000 (value spike reducing)
-* WLAN quality value chnaged for unconnected WLAN (no connection = 0%)
+* WLAN quality value changed for unconnected WLAN (no connection = 0%)
 * Using relative links in all web pages (solved reference problem by different IP adresses)
 * Inserting a delay from 150ms in main loop (load reducing)
 * Default value for Debug Mode is 0 (no debug messages)
