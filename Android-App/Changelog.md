@@ -13,6 +13,7 @@
 
 * Added a settings page with IP selection
 * Saving the last IP in a data base
+* No error handling implement
 
 **20190205 Windsensor_WiFi_1000.apk {+ (stable) +}**
 
