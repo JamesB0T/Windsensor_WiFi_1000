@@ -1,4 +1,4 @@
-**20190205 WiFi_Windsensor_10.bin V0.97 {+ (stable) +}**
+**20190205 Windsensor_WiFi_1000_5.apk {+ (stable) +}**
 
 * Settings field width changed (to 15 characters)
 * Limiting sensor values for time1 and time2 < 1000 (value spike reducing)
