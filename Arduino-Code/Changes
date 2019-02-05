@@ -1,0 +1,22 @@
+20180125 WiFi_Windsensor_8.bin V0.95
+
+* Missing values in JSON solved
+* Changed the code for data sending (competitors problem)
+
+20180201 WiFi_Windsensor_9.bin V0.96
+
+* Clear passwort setting
+* Blocking all interrupts in interrupt routines
+* Blocking all interrupts by saving in EEPROM (Chrash problem solved)
+* All variables in interrupt routines declared as volatile
+* All static variables declared as static
+
+20180205 WiFi_Windsensor_10.bin V0.97
+
+* Field with in settings page changed (to 15 characters)
+* Limiting sensor values for time1 and time2 < 1000 (value spice reducing)
+* WLAN quality value chnaged for unconnected WLAN
+* Using relative links in all web pages
+* Inserting a delay from 150ms in main loop for load reducing
+* Default value for Debug Mode is 0 (no debug messages)
+* Server Modes changed
