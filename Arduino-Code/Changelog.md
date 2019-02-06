@@ -40,6 +40,8 @@
 
 **20190105 NMEA_Windsensor_16_final_MyBoat.bin {+ (stable) +}**
 
+* Version without web interface
+* Only usable for NMEA data transmission to external clients
 * AccessPoint login problem solved
 * AccessPoint is allways on and connectable
 * Only fix settings usable
@@ -48,6 +50,8 @@
 
 **20180710 NMEA_Windsensor_11_final_MyBoat.bin {- (faulty) -}**
 
+* Version without web interface
+* Only usable for NMEA data transmission to external clients
 * First version with fix settings (delivery state for all wind sensor assembly kits)
 * SSID: MyBoat
 * Pass: S6587rr94P
