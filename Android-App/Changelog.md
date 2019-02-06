@@ -13,10 +13,10 @@
 
 * Added a settings page with IP selection
 * Saving the last IP in a data base
-* No error handling implement
+* No error handling implemented
 
 **20190205 Windsensor_WiFi_1000.apk {+ (stable) +}**
 
 * First App version with fix connection to norbert-walter.dnshome.de
 * Usable only for Demo Software
-* No error handling implement
+* No error handling implemented
