@@ -22,6 +22,7 @@
 * Firmware displaying fixed
 * Missing values in JSON solved
 * Changed the code for data sending (competitors problem)
+* Firmware with EEPROM crash problem (interrupt overrun)
 
 **20190125 WiFi_Windsensor_7.bin V0.95 {- (faulty) -}**
 
