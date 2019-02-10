@@ -1,4 +1,11 @@
-**20190205 WiFi_Windsensor_10.bin V0.97 {+ (stable) +}**
+**20190211 WiFi_Windsensor_11.bin V0.98 {+ (stable) +}**
+
+* Sliding avarage disabled for complex instrument
+* Relative link fixed in devinfo
+* Values for sensor1 and sensor2 fixed in devinfo
+* Back button in restart screen added
+
+**20190205 WiFi_Windsensor_10.bin V0.97 {- (faulty) -}**
 
 * Settings field width changed (to 15 characters)
 * Limiting sensor values for time1 and time2 < 1000 (value spike reducing)
