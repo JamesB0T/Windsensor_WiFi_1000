@@ -1,8 +1,8 @@
 **20190214 WiFi_Windsensor_12.bin V0.99 {+ (stable) +}**
 
-* Jumping pointer is solved (using no average function)
+* Jumping pointer in complex instrument is solved (using no average function)
 
-**20190211 WiFi_Windsensor_11.bin V0.98 {+ (faulty) +}**
+**20190211 WiFi_Windsensor_11.bin V0.98 {- (faulty) -}**
 
 * Sliding avarage disabled for complex instrument
 * Relative link fixed in devinfo
