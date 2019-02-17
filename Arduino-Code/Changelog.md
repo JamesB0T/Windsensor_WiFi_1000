@@ -1,4 +1,10 @@
-**20190214 WiFi_Windsensor_12.bin V0.99 {+ (stable) +}**
+**20190217 firmware_V1.00.wsb {+ (stable) +}**
+
+* First actual firmware V1.00
+* Critical WLAN settings solved (now checking all input values)
+* Implement online update function via GitLab
+
+**20190214 WiFi_Windsensor_12.bin V0.99 {- (critical faulty) -}**
 
 * Jumping pointer in complex instrument is solved (using no average function)
 
@@ -23,7 +29,7 @@
 
 * Clear passwort setting
 * Blocking all interrupts in interrupt routines
-* Blocking all interrupts by saving in EEPROM (Chrash problem solved)
+* Blocking all interrupts by saving in EEPROM (critical chrash problem solved)
 * Atomic operation for wind value calculation
 * All variables in interrupt routines declared as volatile
 * All static variables declared as static
