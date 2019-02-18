@@ -36,7 +36,7 @@
 
 **20190125 WiFi_Windsensor_8.bin V0.95 {- (faulty critical) -}**
 
-* Firmware displaying fixed
+* Firmware version displaying fixed
 * Missing values in JSON solved
 * Changed the code for data sending (competitors problem)
 * Firmware with EEPROM crash problem (interrupt overrun)
