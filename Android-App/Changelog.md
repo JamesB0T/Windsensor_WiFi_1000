@@ -7,7 +7,7 @@
 * Checking the type of connection (is this a wind sensor)
 * Reading the device type from JSON
 * Open the following page only if detect a wind sensor
-* Error handling by incorrect connections (messageing)
+* Error handling by incorrect connections (messaging)
 
 **20190205 Windsensor_WiFi_1000_3.apk {+ (old) +}**
 
