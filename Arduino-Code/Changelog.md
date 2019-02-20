@@ -1,4 +1,4 @@
-**20190217 firmware_V1.01.wsb {+ (stable) +}**
+**20190220 firmware_V1.01.wsb {+ (stable) +}**
 
 * Problem with avetage setting solved (now updating directly)
 * Average value 10 usable
