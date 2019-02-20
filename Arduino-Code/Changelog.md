@@ -1,4 +1,13 @@
-**20190217 firmware_V1.00.wsb {+ (stable) +}**
+**20190217 firmware_V1.01.wsb {+ (stable) +}**
+
+* Problem with avetage setting solved (now updating directly)
+* Average value 10 usable
+* Info message when Demo Mode for Instrument page and Device Info page
+* Offset for wind direction inserted (new feature)
+* Two step update not more necessary
+* Any english messages changed
+
+**20190217 firmware_V1.00.wsb {+ (old) +}**
 
 * First actual firmware V1.00
 * Critical WLAN settings solved (now checking all input values)
