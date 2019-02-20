@@ -1,8 +1,8 @@
 **20190220 firmware_V1.01.wsb {+ (stable) +}**
 
-* Problem with avetage setting solved (now updating directly)
-* Average value 10 usable
-* Info message when Demo Mode for Instrument page and Device Info page
+* Problem with average setting solved (now updating directly)
+* Average value 10 now usable
+* Info message in Demo Mode for Instrument page and Device Info page
 * Offset for wind direction inserted (new feature)
 * Two step update not more necessary
 * Any english messages changed
