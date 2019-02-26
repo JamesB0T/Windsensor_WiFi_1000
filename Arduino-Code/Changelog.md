@@ -1,4 +1,9 @@
-**20190220 firmware_V1.01.wsb {+ (stable) +}**
+**20190220 firmware_V1.02.wsb {+ (stable) +}**
+
+* Blinking text in demo mode fixed (red syle)
+* Individual help text depends on firmware version
+
+**20190220 firmware_V1.01.wsb {+ (old) +}**
 
 * Problem with average setting solved (now updating directly)
 * Average value 10 now usable
