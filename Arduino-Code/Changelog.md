@@ -8,7 +8,7 @@
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
-**20190220 firmware_V1.02.wsb {+ (stable) +}**
+**20190220 firmware_V1.02.wsb {+ (old) +}**
 
 * Blinking text in demo mode fixed (red syle)
 * Individual help text depends on firmware version
