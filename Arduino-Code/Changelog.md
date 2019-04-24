@@ -5,7 +5,7 @@
 * Fixing the wind speed problem for m/s and km/h in Demo Mode (missing values)
 * Fixing WLAN connection quality for Demo Mode (if no connection then uncorrect values )
 * Adding in Web configuration a new parameter "Connection Timeout" (soled the start problem with OpenPlotter)
-* Styling in page "Settings" changed
+* Styling changed in page "Settings"
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
