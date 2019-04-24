@@ -1,3 +1,13 @@
+**20190424 firmware_V1.02.wsb {+ (stable) +}**
+
+* Fixing the wind speed problem by slow winds
+* Fixing the wind speed problem for bft unit (uncorrect calculation)
+* Fixing the wind speed problem for m/s and km/h in Demo Mode (missing values)
+* Fixing WLAN connection quality for Demo Mode (if no connection then uncorrect values )
+* Adding in Web configuration a new parameter "Connection Timeout" (soled the start problem with OpenPlotter)
+
+{- (Attention! After update changes all settings to default values. Please renew the settings.) -}
+
 **20190220 firmware_V1.02.wsb {+ (stable) +}**
 
 * Blinking text in demo mode fixed (red syle)
