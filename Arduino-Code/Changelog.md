@@ -6,7 +6,7 @@
 * Fixing WLAN connection quality for Demo Mode (if no connection then uncorrect values )
 * Adding in Web configuration a new parameter "Connection Timeout" (soled the start problem with OpenPlotter)
 
-{- (Attention! After update changes all settings to default values. Please renew the settings.) -}
+{- Attention! After update changes all settings to default values. Please renew the settings. -}
 
 **20190220 firmware_V1.02.wsb {+ (stable) +}**
 
