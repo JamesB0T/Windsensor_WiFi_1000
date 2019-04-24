@@ -1,4 +1,4 @@
-**20190424 firmware_V1.02.wsb {+ (stable) +}**
+**20190424 firmware_V1.03.wsb {+ (stable) +}**
 
 * Fixing the wind speed problem by slow winds
 * Fixing the wind speed problem for bft unit (uncorrect calculation)
