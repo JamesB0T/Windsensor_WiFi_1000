@@ -84,11 +84,12 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] JSON
     - [ ] MQTT
     - [ ] Wind History Diagram
-    - [ ] Sensor Data Diagram
+    - [x] Sensor Data Diagram for diagnostic and mechanical adjustment
     - [x] Web-Updater
     - [x] Web-Configurator
     - [x] Web server as data display
     - [x] Andoid App
+    - [x] External Diagnostic Tool
 - [x] Components ordering
     - [x] Electronic board
     - [x] Mechanical parts
