@@ -1,4 +1,4 @@
-**20190424 firmware_V1.04.wsb {+ (stable) +}**
+**20190428 firmware_V1.04.wsb {+ (stable) +}**
 
 * Reset start values for speed and direction after reboot (eleminate start spikes)
 * Link problem in HTML error page 404 solved
