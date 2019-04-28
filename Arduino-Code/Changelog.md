@@ -106,7 +106,7 @@
 
 * Version without web interface
 * Only usable for NMEA data transmission to external clients
-* First version with fix settings (delivery state for all wind sensor assembly kits)
+* First version with fix settings (delivery state for all wind sensor assembly kits from 07/2018)
 * SSID: MyBoat
 * Pass: S6587rr94P
 * Existing AccessPoint problem
