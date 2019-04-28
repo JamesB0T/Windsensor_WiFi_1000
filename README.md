@@ -4,7 +4,11 @@ My wind transducer got damaged in winter 2017/2018 by a big storm in Netherlands
 
 For designing I use the online CAD program [Onshape](https://www.onshape.com). It is easy, powerfull and innovative. You just need a PC and a web browser with 3D function (Web GL). You find my project under the term "windsensor". Copy it to your own workplace so you can view and modify the 3D model.
 
-This windsensor is based on a [patent](Patents/US5231876.pdf) from Peet Bros Inc. The patent has expired and everyone can use it. The function is very simple using two reed magnet sensors to detect wind speed and wind direction. I modified the circuit and used two hall sensors instead. An ESP8266-E12 microcontroller processes readings from both sensors and calculates wind speed and wind direction. The operating principle is amazingly simple and smart. It is a perfect combination of simplicity and effectiveness and poses an attractive task for the ESP8266 microcontroller.
+This windsensor is based on a [patent](Patents/US5231876.pdf) from Peet Bros Inc. The patent has expired and everyone can use it. The function is very simple using two reed magnet sensors to detect wind speed and wind direction.
+
+![Mechanical Function](Pictures/Simulation_Windsensor.gif)
+
+I modified the circuit and used two hall sensors instead. An ESP8266-E12 microcontroller processes readings from both sensors and calculates wind speed and wind direction. The operating principle is amazingly simple and smart. It is a perfect combination of simplicity and effectiveness and poses an attractive task for the ESP8266 microcontroller.
 
 If you like to help or consider this project useful, please donate. Thanks for your support!
 
