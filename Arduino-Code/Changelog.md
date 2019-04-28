@@ -1,4 +1,15 @@
-**20190424 firmware_V1.03.wsb {+ (stable) +}**
+**20190424 firmware_V1.04.wsb {+ (stable) +}**
+
+* Reset start values for speed and direction after reboot (eleminate start spikes)
+* Link problem in HTML error page 404 solved
+* JSON string for ServerMode fixed (before string, after int)
+* New feature! Oscilloscope function included
+* New JSON device created for oscilloscope dada sending
+* Diagnostic Mode activated (starts the oscilloscope function)
+* Pulse Counter added in Device Info page (count the pulse per revolution for the direction Hall sensor)
+* New complex instrument added when true wind selected (instrument with full degree scale and cardinal points, without sections, useful for Weather Station Mode)
+
+**20190424 firmware_V1.03.wsb {+ (old) +}**
 
 * Fixing the wind speed problem by slow winds
 * Fixing the wind speed problem for bft unit (uncorrect calculation)
