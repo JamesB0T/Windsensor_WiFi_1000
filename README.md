@@ -63,6 +63,11 @@ Network devices can be connected to OpenPlotter. A simple browser displays all d
 ![Android App](Pictures/AppInstrument1.png)
 ![Android App](Pictures/AppInstrument2.png)
 
+(2018-04-28) Now also a diagnostic tool is available for the correct setting of the aperture and the magnets.
+
+![Diagnostic Tool](Pictures/Diagnosetool1.png)
+
+
 ## What is the current status?
 
 I have completed many tasks but still not everything is perfect so far.
