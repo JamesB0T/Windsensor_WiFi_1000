@@ -67,6 +67,7 @@ Network devices can be connected to OpenPlotter. A simple browser displays all d
 
 ![Diagnostic Tool](Pictures/Diagnosetool1.png)
 
+(2019-06-24) Now is a French assembling instruction available. Thanks to Doninique Martin!
 
 ## What is the current status?
 
