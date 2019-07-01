@@ -4,7 +4,7 @@
 * Link problem in HTML error page 404 solved
 * JSON string for ServerMode fixed (before string, after int)
 * New feature! Oscilloscope function included
-* New JSON device created for oscilloscope dada sending
+* New JSON device created for oscilloscope data sending
 * Diagnostic Mode activated (starts the oscilloscope function, usable with external Diagnostic Tool)
 * Pulse Counter added in Device Info page (count the pulse per revolution for the direction Hall sensor)
 * New complex instrument added when true wind selected (instrument with full degree scale and cardinal points, without sections, useful for Weather Station Mode)
