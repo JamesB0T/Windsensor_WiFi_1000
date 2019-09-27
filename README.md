@@ -51,7 +51,7 @@ I use the windsensor in combination with [OpenPlotter](http://www.sailoog.com/op
 
 
 
-![Connectivity](Pictures/Windsensor_Raspi_Handy_Laptop.png)
+![Connectivity](Pictures/Windsensor_Raspi_Handy_Laptop_M5Stack.png)
 
 Network devices can be connected to OpenPlotter. A simple browser displays all data from the wind transducer. I use a 7" Android tablet as display for my windsensor.
 
