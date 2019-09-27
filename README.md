@@ -131,6 +131,10 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] Long time test
     - [ ] Test with auto pilot
     - [x] User experiences
+- [ ] Extensions
+    - [x] Multi function display with M5Stack
+    - [ ] NMEA2000 Gateway
+    - [ ] Weather data sensor
 - [ ] Certification
     - [ ] CE Certification
 
