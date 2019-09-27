@@ -5,7 +5,7 @@
 * Firmware update changed (GitLab download has been removed)
 * New feature! Added a new calibration function for wind speed
 * New feature! Added password for configuration pages (default: 12345678)
-* WLAN default settings (SSID: NoWa, Pass: 12345678, IP 192.168.4.1)
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
