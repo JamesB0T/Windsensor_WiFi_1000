@@ -1,4 +1,4 @@
-**20190927 firmware_V1.05.wsb {+ (stable) +}**
+**20190928 firmware_V1.05.wsb {+ (stable) +}**
 
 * Using the actual Espressif SDK 2.2.1(cfd48f3)
 * Restart now available via Web configuration
@@ -6,6 +6,7 @@
 * New feature! Added a new calibration function for wind speed
 * New feature! Added password for configuration pages (default: 12345678)
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+* Diagnose Mode fixed (No connection and answare from wind sensor by using newer browser)
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
