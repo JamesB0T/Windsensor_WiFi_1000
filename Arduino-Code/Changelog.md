@@ -6,7 +6,7 @@
 * New feature! Added a new calibration function for wind speed
 * New feature! Added password for configuration pages (default: 12345678)
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
-* Diagnose Mode fixed (No connection and answare from wind sensor by using newer browser)
+* Diagnostic Mode fixed (No connection and answare from wind sensor by using newer web browser)
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
@@ -27,7 +27,7 @@
 * Fixing the wind speed problem for bft unit (uncorrect calculation)
 * Fixing the wind speed problem for m/s and km/h in Demo Mode (missing values)
 * Fixing WLAN connection quality for Demo Mode (if no connection then uncorrect values )
-* Adding in Web configuration a new parameter "Connection Timeout" (soled the start problem with OpenPlotter)
+* Adding in Web configuration a new parameter "Connection Timeout" (solved the start problem with OpenPlotter)
 * Styling changed in page "Settings"
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
