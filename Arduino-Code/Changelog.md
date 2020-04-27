@@ -1,4 +1,14 @@
-**20190928 firmware_V1.05.wsb {+ (stable) +}**
+**20200427 firmware_V1.06.wsb {+ (stable) +}**
+
+* Firmware update changed (GitLab download now available)
+* Password special characters added (A..z, 0..9, _-)
+* WLAN indicator for connection quality fixed
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+{- Attention! After update changes all settings to default values. Please renew the settings. -}
+
+
+**20190928 firmware_V1.05.wsb {+ (old) +}**
 
 * Using the actual Espressif SDK 2.2.1(cfd48f3)
 * Restart now available via Web configuration
