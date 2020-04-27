@@ -1,7 +1,7 @@
 **20200427 firmware_V1.06.wsb {+ (stable) +}**
 
 * Firmware update changed (GitLab download now available)
-* Password special characters added (A..z, 0..9, _-)
+* For SSID special characters added (A..z, 0..9, _-)
 * WLAN indicator for connection quality fixed
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
