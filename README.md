@@ -122,7 +122,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] Data sheet
 - [ ] Application tests
     - [x] Temperature 20...80°C
-    - [x] Vibration test by strong wind (5bft)
+    - [x] Vibration test by strong wind (8bft)
     - [x] WiFi stability test
     - [x] Connection test
     - [x] Rain test
