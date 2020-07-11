@@ -11,7 +11,7 @@
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
 
-**20200427 firmware_V1.06.wsb {+ (stable) +}**
+**20200427 firmware_V1.06.wsb {+ (old) +}**
 
 * Firmware update changed (GitLab download now available)
 * For SSID special characters added (A..z, 0..9, _-)
