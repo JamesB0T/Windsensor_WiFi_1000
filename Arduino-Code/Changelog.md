@@ -4,6 +4,9 @@
 * Elektronic tested over 180km/h wind speed with sysntetic signals
 * Direction accuracy 10x improved. Now is accuracy by 1° for 12bft or 78kn wind speed
 * Display problem fixed for negativ wind direction in Canvas Steel instrument
+* New parameter added for WiFi channel setting (1...13)
+* WiFi connections reduced from 4 to 2 clients for better performance 
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
