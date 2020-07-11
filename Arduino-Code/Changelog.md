@@ -1,7 +1,7 @@
 **20200611 firmware_V1.07.wsb {+ (stable) +}**
 
 * Boot problem fixed by wind higher 4bft (Boot Loop)
-* Elektronic tested over 180km/h wind speed with sysntetic signals
+* Elektronic tested until 180km/h wind speed with sysntetic signals
 * Direction accuracy 10x improved. Now is accuracy by 1° for 12bft or 78kn wind speed
 * Display problem fixed for negativ wind direction in Canvas Steel instrument
 * New parameter added for WiFi channel setting (1...13)
