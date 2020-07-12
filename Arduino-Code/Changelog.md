@@ -1,4 +1,4 @@
-**20200611 firmware_V1.07.wsb {+ (stable) +}**
+**20200711 firmware_V1.07.wsb {+ (stable) +}**
 
 * Boot problem fixed by wind speed higher 4bft (Boot Loop)
 * Elektronic tested until 180km/h wind speed with sysntetic signals
