@@ -1,4 +1,10 @@
-**20200711 firmware_V1.07.wsb {+ (stable) +}**
+**20210325 firmware_V1.08.wsb {+ (stable) +}**
+
+* Downwind values now correct
+* Diagnostic Mode fixed
+* Average building fixed
+
+**20200711 firmware_V1.07.wsb {+ (old) +}**
 
 * Boot problem fixed by wind speed higher 4bft (Boot Loop)
 * Elektronic tested until 180km/h wind speed with sysntetic signals
