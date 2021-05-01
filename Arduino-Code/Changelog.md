@@ -1,7 +1,7 @@
 **20210501 firmware_V1.09.wsb {+ (stable) +}**
 
 * CPU speed changed from 80 MHz to 160 MHz for more performance
-* nDNS service added for ZeroConfig with AVnav
+* nDNS service added for NMEA0183 ZeroConfig with AVnav
 * Hostmane support fixed
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
