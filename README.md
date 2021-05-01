@@ -93,6 +93,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] Basic functionality
     - [x] NMEA0183 WiFi
     - [x] NMEA0183 Serial
+    - [x] mDNS Service
     - [x] JSON
     - [ ] MQTT
     - [ ] Wind History Diagram
