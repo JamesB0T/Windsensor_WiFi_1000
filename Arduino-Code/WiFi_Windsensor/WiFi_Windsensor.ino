@@ -1,0 +1,384 @@
+//*********************************************************************************************
+// WiFi and NMEA server for transmitting wind sensor data via TCP connection
+// (C) Norbert Walter 2021
+// License: GNU GPL V3
+// https://www.gnu.org/licenses/gpl-3.0.txt
+//
+// WiFi_Windsensor.ino
+//
+// Tested and compiled with Arduino IDE 1.8.5
+// Board esp8266 V2.5.2 (SDK 2.2.1 (cfd48f3))
+// The server use different NMEA centeces
+//
+// Wind measuring starts at 1m/s (1,9kn) wind speed @ 1000ms SendPeriod. Lower speed can only detect when SendPeriod is greater than 1000ms (see table).
+// The SendPeriod limit the lowest detectable wind speed. The fastest SendSpeed is 500ms. For quick response reduce the average on 1 and set the SendSpeed
+// on 500ms.
+//
+// SendPeriod   Lowest detectable speed
+//    500ms       2,00m/s (3,8kn)
+//   1000ms       1.00m/s (1.9kn)
+//   1500ms       0.66m/s (1,28kn)
+//   2000ms       0.50m/s (0,97kn)
+//
+// Wind direction and speed:  $WIMWV,x.x,a,x.x,a,A*hh
+// Wind direction and speed:  $WIVWR,x.x,a,x.x,N,x.x,M,x.x,K*hh
+// Down wind speed:           $WIVPW,x.x,N,x.x,M*hh                               (Wind speed parallel to wind direction)
+// Wind speed informations:   $PWINF,0,x.x,D,x.x,D,x.x,M,x.x,K,x.x,N,x.x,B,A*hh   (Custom sentence)
+// Wind sensor temperature:   $PWWST,C,0,x.x,A*hh                                 (Custom sentence)
+//
+//*********************************************************************************************
+
+// Includes
+#include <ESP8266WiFi.h>    // WiFi lib with TCP server and client
+
+#include <WiFiClient.h>             // WiFi lib for clients
+#include <ESP8266WebServer.h>       // WebServer lib
+#include <ESP8266mDNS.h>            // DNS lib
+#include <ESP8266HTTPUpdateServer.h>// Web Update server
+
+#include <Ticker.h>         // Timer lib
+#include <EEPROM.h>         // EEPROM lib
+#include <WString.h>        // Needs for structures
+#include <OneWire.h>        // 1Wire network lib
+#include <DallasTemperature.h>// Dallas 1Wire lib
+#include <SimplyAtomic.h>   // This library includes the ATOMIC_BLOCK macro
+#include "Configuration.h"  // Setup data structure in header file
+#include "Definitions.h"    // Local definitions in additional file
+
+configData actconf;         // Actual configuration, Global variable
+                            // Overload with old EEPROM configuration by start. It is necessarry for port and serspeed
+                            // Don't change the position!
+
+#include "Calculation.h"    // Function library for wind data calculation
+#include "FunctionsLib.h"   // Function library
+#include "NMEATelegrams.h"  // Function library for NMEA telegrams
+#include "icon_html.h"      // Favorit icon
+#include "css_html.h"       // CCS cascading style sheets
+#include "steel_html.h"     // JavaScript steelseries_micro.js.gz library
+#include "tween_html.h"     // JavaScript tween-min.js.gz library
+#include "js_html.h"        // JavaScript functions
+#include "main_html.h"      // Main webpage
+#include "settings_html.h"  // Settings webpage
+#include "firmware_html.h"  // Firmware update webpage
+#include "json_html.h"      // JSON webpage
+#include "json2_html.h"     // JSON webpage for Hall sensor signals
+#include "MD5_html.h"       // JavaScript crypt password with MD5
+#include "restart_html.h"   // Reset info webpage
+#include "devinfo_html.h"   // Device info webpage
+#include "windv_html.h"     // Wind value webpage
+#include "windi_html.h"     // Wind instrument webpage
+#include "error_html.h"     // Error 404 webpage
+
+// Declarations
+int value;                  // Value from first byte in EEPROM
+int empty;                  // If EEPROM empty without configutation then set to 1 otherwise 0
+configData defconf;         // Definition of default configuration data
+configData oldconf;         // Configuration stucture for old config data in EEPROM
+configData newconf;         // Configuration stucture for new config data in EEPROM
+
+ESP8266WebServer httpServer(actconf.httpport);  // Port for HTTP server
+ESP8266HTTPUpdateServer httpUpdater;            // Declaration update server
+MDNSResponder mdns;                             // Activate DNS responder
+
+Ticker Timer2;              // Declare Timer2 for average building
+Ticker Timer3;              // Declare Timer3 for normal NMEA data sending
+Ticker Timer4;              // Declare Timer4 for reduced NMEA data sending
+Ticker Timer5;              // Declare Timer5 for calculation of windspeed und winddirection 
+WiFiServer server(actconf.dataport);  // Declare WiFi NMEA server port
+ 
+//*********************************************************************************************
+// Setup section
+//*********************************************************************************************
+void setup() {
+
+   // !!!!!! Uncomment this line if you using a new configuration structure !!!!!!
+//  saveEEPROMConfig(defconf);
+  
+  // Read the first byte from the EEPROM
+  EEPROM.begin(sizeEEPROM);
+  value = EEPROM.read(cfgStart);
+  EEPROM.end(); 
+  // If the fist Byte not identical to the first value in the default configuration then saving a default configuration in EEPROM.
+  // Means if the EEPROM empty then saving a default configuration.
+  if(value == defconf.valid){
+    empty = 0;                  // Marker for configuration is present
+  }
+  else{
+    saveEEPROMConfig(defconf);
+    empty = 1;                  // Marker for configuration is missing
+  }
+
+  // Loading EEPROM configuration
+  actconf = loadEEPROMConfig(); // Overload with old EEPROM configuration by start. It is necessarry for serspeed
+
+  // If the firmware version in EEPROM different to defconf then save the new version in EEPROM
+  if(String(actconf.fversion) != String(defconf.fversion)){
+    String fver = defconf.fversion;
+    fver.toCharArray(actconf.fversion, 6);
+    saveEEPROMConfig(actconf);
+  }
+  
+  // Pin Settings
+  pinMode(ledPin, OUTPUT);          // LED Pin output
+  digitalWrite(ledPin, LOW);        // Switch LED on (inverted!)
+  
+  Serial.begin(actconf.serspeed);   // Start serial communication
+  delay(10);
+
+//  DebugPrint(3, "First EEPROM byte: ");
+//  DebugPrintln(3, value);
+
+  // ESP8266 Information Data
+  DebugPrintln(3, "Booting Sketch...");
+  DebugPrint(3, actconf.devname);
+  DebugPrint(3, " ");
+  DebugPrint(3, actconf.fversion);
+  DebugPrintln(3, " (C) Norbert Walter");
+  DebugPrintln(3, "*********************************************");
+  DebugPrintln(3, "");
+  DebugPrintln(3, "Modul Type: ESP8266");
+  DebugPrint(3, "SDK-Version: ");
+  DebugPrintln(3, ESP.getSdkVersion());
+  DebugPrint(3, "ESP8266 Chip-ID: ");
+  DebugPrintln(3, ESP.getChipId());
+  DebugPrint(3, "ESP8266 Speed [MHz]: ");  
+  DebugPrintln(3, ESP.getCpuFreqMHz());
+  DebugPrint(3, "Free Heap Size [Bytes]: ");
+  DebugPrintln(3, ESP.getFreeHeap());
+  DebugPrintln(3, "");
+  DebugPrint(3, "Sensor ID: ");
+  DebugPrintln(3, actconf.sensorID);
+  DebugPrint(3, "Wind Sensor Type: ");
+  DebugPrintln(3, actconf.windSensorType);
+  DebugPrintln(3, "Sensor Type: Wind Speed");
+  DebugPrint(3, "Input Pin: GPIO ");
+  DebugPrintln(3, INT_PIN1);
+  DebugPrintln(3, "Value Range [kn]: 0...73");
+  DebugPrint(3, "Sensor Type: ");
+  if(String(actconf.windType) == "R"){
+      DebugPrint(3, "Relative ");
+    }
+    else{
+      DebugPrint(3, "True ");
+    }  
+  DebugPrintln(3, "wind direction");
+  DebugPrint(3, "Input Pin: GPIO ");
+  DebugPrintln(3, INT_PIN2);
+  DebugPrintln(3, "Value Range [°]: 0...360");  
+  DebugPrintln(3, "Sensor Type: Sensor Temp 1Wire");
+  DebugPrint(3, "Input Pin: GPIO ");
+  DebugPrintln(3, ONE_WIRE_BUS);
+  DebugPrintln(3, "Value Range [°C]: -55...125");
+  DebugPrint(3, "Send Period [ms]: ");
+  DebugPrintln(3, SendPeriod);
+  DebugPrint(3, "Reduced Send Period [ms]: ");
+  DebugPrintln(3, RedSendPeriod);
+  DebugPrintln(3, "");
+
+  // Debug info for initialize the EEPROM
+  if(empty == 1){
+    DebugPrintln(3, "EEPROM config missing, initialization done");
+  }
+  else{
+    DebugPrintln(3, "EEPROM config present");
+  }
+
+  // Loading EEPROM config
+  DebugPrintln(3, "Loading actual EEPROM config");
+  actconf = loadEEPROMConfig();
+  DebugPrintln(3, "");
+
+  // Starting access point for update server
+  DebugPrint(3, "Access point started with SSID ");
+  DebugPrintln(3, actconf.sssid);
+  DebugPrint(3, "Access point channel: ");
+  DebugPrintln(3, WiFi.channel());
+//  DebugPrintln(3, actconf.apchannel);
+  DebugPrint(3, "Max AP connections: ");
+  DebugPrintln(3, actconf.maxconnections);
+  WiFi.mode(WIFI_AP_STA);
+  WiFi.softAP(actconf.sssid, actconf.spassword, actconf.apchannel, false, actconf.maxconnections);
+  hname = String(actconf.hostname) + "-" + String(actconf.sensorID);
+  WiFi.hostname(hname);   // Provide the hostname
+  DebugPrint(3, "Host name: ");
+  DebugPrintln(3, hname);
+  if(actconf.mDNS == 1){
+    MDNS.begin(hname);      // Start mDNS service
+    MDNS.addService("http", "tcp", actconf.httpport);       // HTTP service
+    MDNS.addService("nmea-0183", "tcp", actconf.dataport);  // NMEA0183 dada service for AVnav
+  }  
+  DebugPrintln(3, "mDNS service: activ");
+  DebugPrint(3, "mDNS name: ");
+  DebugPrint(3, hname);
+  DebugPrintln(3, ".local");
+  
+  // Sart update server
+  httpUpdater.setup(&httpServer);
+  httpServer.begin();
+  DebugPrint(3, "HTTP Update Server started at port: ");
+  DebugPrintln(3, actconf.httpport);
+  DebugPrint(3, "Use this URL: ");
+  DebugPrint(3, "http://");
+  DebugPrint(3, WiFi.softAPIP());
+  DebugPrintln(3, "/update");
+  DebugPrintln(3, "");
+
+  #include "ServerPages.h"    // Webserver pages request functions
+  
+  // Connect to WiFi network
+  DebugPrint(3, "Connecting WiFi client to ");
+  DebugPrintln(3, actconf.cssid);
+
+  // Load connection timeout from configuration (maxccount = (timeout[s] * 1000) / 500[ms])
+  maxccounter = (actconf.timeout * 1000) / 500;
+
+  // Wait until is connected otherwise abort connection after x connection trys
+  WiFi.begin(actconf.cssid, actconf.cpassword);
+  ccounter = 0;
+  while ((WiFi.status() != WL_CONNECTED) && (ccounter <= maxccounter)) {
+    delay(500);
+    DebugPrint(3, ".");
+    ccounter ++;
+  }
+  DebugPrintln(3, "");
+  if (WiFi.status() == WL_CONNECTED){
+    DebugPrint(3, "WiFi client connected with IP: ");
+    DebugPrintln(3, WiFi.localIP());
+    DebugPrintln(3, "");
+    digitalWrite(ledPin, HIGH);           // LED off (Low activ)
+    
+    delay(100);
+  }
+  else{
+    WiFi.disconnect(true);                // Abort connection
+    DebugPrintln(3, "Connection aborted");
+    DebugPrintln(3, "");
+    for(int i = 0; i <= 5; i++){
+      digitalWrite(ledPin, HIGH);         // LED off (Low activ)
+      delay(100);
+      digitalWrite(ledPin, LOW);          // LED on (Low activ)
+      delay(100);
+    }
+  }
+  
+  // Start the NMEA TCP server
+  server.begin();
+  DebugPrint(3, "NMEA-Server started at port: ");
+  DebugPrintln(3, actconf.dataport);
+  // Print the IP address
+  DebugPrint(3, "Use this URL : ");
+  DebugPrint(3, "http://");
+  if (WiFi.status() == WL_CONNECTED){
+    DebugPrintln(3, WiFi.localIP());
+  }
+  else{
+    DebugPrintln(3, WiFi.softAPIP());
+  };
+
+  //*************************************************
+  // Pin settings for interrupt
+  pinMode(INT_PIN1, INPUT_PULLUP);  // Interrupt input 1
+  pinMode(INT_PIN2, INPUT_PULLUP);  // Interrupt input 2
+
+  timer1_attachInterrupt(counter);              // Start interrupt routine counter
+  timer1_enable(TIM_DIV16, TIM_EDGE, TIM_LOOP); // 80MHz / 16 => 0,2us
+  timer1_write(500);                            // Start timer1 100us @ 0,2us
+  Timer2.attach_ms(50, buildaverage);         // Start timer all 50ms
+  Timer3.attach_ms(SendPeriod, sendNMEA);     // Data transmission timer for NMEA
+  Timer4.attach_ms(RedSendPeriod, sendNMEA2); // Data transmission timer with reduced frequence for NMEA
+  Timer5.attach_ms(500, winddata);            // Start Timer all 500ms for wind data calculation
+  
+  // Work around for start problem by high wind speed > 7rpm (cyclic boot loop)
+  // Start interrupts at first in low level mode and wait 4s then change in falling slope mode
+  attachInterrupt(INT_PIN1, interruptRoutine1, LOW); // Start interrupt for wind speed
+  attachInterrupt(INT_PIN2, interruptRoutine2, LOW); // Start Interrupt for wind direction
+  delay(4000);
+  // Start interrupts in falling slope mode
+  attachInterrupt(INT_PIN1, interruptRoutine1, FALLING); // Start interrupt for wind speed
+  attachInterrupt(INT_PIN2, interruptRoutine2, FALLING); // Start Interrupt for wind direction
+  //**************************************************
+   
+  // Reset the time variables
+  time1 = 0;
+  time2 = 0;
+  time1_avg = 0;
+  time2_avg = 0;
+
+}
+ 
+//*********************************************************************************************
+// Loop section
+//*********************************************************************************************
+void loop() {
+  
+  httpServer.handleClient();        // HTTP Server-handler for HTTP update server
+  MDNS.update();                    // Update DNS info
+  
+  // Check if a client is connected
+  WiFiClient client = server.available();
+  int i = 0;
+  
+  if(!client.connected() && WiFi.status() != WL_CONNECTED){
+    digitalWrite(ledPin, LOW);      // LED on (Low activ)
+    i = 0;
+  }
+
+  // While client is connected or Serial Mode is active
+  while ((client.connected() && !client.available()) || (int(actconf.serverMode) == 1)) {
+
+    digitalWrite(ledPin, HIGH);     // LED off (Low activ)
+    
+    httpServer.handleClient();      // HTTP Server-handler for HTTP update server
+    if(actconf.mDNS == 1){
+      MDNS.update();                // Update DNS info  
+    }  
+    
+    if ((i == 0) && ((int(actconf.serverMode) == 0) || (int(actconf.serverMode) == 4))) {
+      DebugPrintln(3, "Client connected");
+      DebugPrintln(3, "");
+    }
+
+    // Wind speed and wind direction data calculated via Timer5 interrupt all 500ms
+
+    // Sending NMEA data with normal speed
+    if (windspeed_mps > 0 && flag1 == true){     
+      i++;
+      DebugPrintln(3, "");
+      DebugPrint(3, "Send package:");
+      DebugPrintln(3, i);
+          
+      if((int(actconf.serverMode) == 0) || (int(actconf.serverMode) == 1) || (int(actconf.serverMode) == 4)){
+        client.println(sendMWV(1));  // Send NMEA telegrams
+        client.println(sendVWR(1));
+        client.println(sendVPW(1));
+        client.println(sendINF(1));
+        client.println(sendWST(1));
+      }
+         
+      flashLED(10);                 // Flash LED for data transmission
+      flag1 = false;                // Reset the flag
+    }
+
+
+    // Sending NMEA data with reduced speed
+    if (windspeed_mps <= 0 && flag2 == true){
+      i++;
+      DebugPrintln(3, "");
+      DebugPrint(3, "Send package:");
+      DebugPrintln(3, i);
+      
+      if((int(actconf.serverMode) == 0) || (int(actconf.serverMode) == 1) || (int(actconf.serverMode) == 4)){
+        client.println(sendMWV(1));  // Send NMEA telegrams
+        client.println(sendVWR(1));
+        client.println(sendVPW(1));
+        client.println(sendINF(1));
+        client.println(sendWST(1));
+      }
+           
+      flashLED(10);                 // Flash LED for data transmission
+      flag2 = false;                // Reset the flag
+    }
+
+  }
+  delay(150);                       // Delay for load reducing
+}
