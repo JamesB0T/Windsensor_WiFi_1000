@@ -10,16 +10,6 @@
 // Board esp8266 V2.5.2 (SDK 2.2.1 (cfd48f3))
 // The server use different NMEA centeces
 //
-// Wind measuring starts at 1m/s (1,9kn) wind speed @ 1000ms SendPeriod. Lower speed can only detect when SendPeriod is greater than 1000ms (see table).
-// The SendPeriod limit the lowest detectable wind speed. The fastest SendSpeed is 500ms. For quick response reduce the average on 1 and set the SendSpeed
-// on 500ms.
-//
-// SendPeriod   Lowest detectable speed
-//    500ms       2,00m/s (3,8kn)
-//   1000ms       1.00m/s (1.9kn)
-//   1500ms       0.66m/s (1,28kn)
-//   2000ms       0.50m/s (0,97kn)
-//
 // Wind direction and speed:  $WIMWV,x.x,a,x.x,a,A*hh
 // Wind direction and speed:  $WIVWR,x.x,a,x.x,N,x.x,M,x.x,K*hh
 // Down wind speed:           $WIVPW,x.x,N,x.x,M*hh                               (Wind speed parallel to wind direction)
