@@ -43,7 +43,7 @@ configData actconf;         // Actual configuration, Global variable
 #include "FunctionsLib.h"   // Function library
 #include "NMEATelegrams.h"  // Function library for NMEA telegrams
 #include "icon_html.h"      // Favorit icon
-#include "css_html.h"       // CCS cascading style sheets
+#include "css_html.h"       // CSS cascading style sheets
 #include "steel_html.h"     // JavaScript steelseries_micro.js.gz library
 #include "tween_html.h"     // JavaScript tween-min.js.gz library
 #include "js_html.h"        // JavaScript functions
