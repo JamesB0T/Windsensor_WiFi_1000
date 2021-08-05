@@ -108,7 +108,7 @@ httpServer.on("/css", []() {
 
 httpServer.on("/js", []() {
   String content = JS();
-  httpServer.sendHeader("Cache-Control", "max-age=600");
+  httpServer.sendHeader("Cache-Control", "max-age=1");
   httpServer.send(200, "text/javascript", content);
 });
 

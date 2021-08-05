@@ -30,11 +30,14 @@
 #include <EEPROM.h>         // EEPROM lib
 #include <WString.h>        // Needs for structures
 #include <OneWire.h>        // 1Wire network lib
+#include <Wire.h>           // Lib for I2C
+#include <AS5600.h>         // Lib for magnetic rotation sensor AS5600
 #include <DallasTemperature.h>// Dallas 1Wire lib
 #include <SimplyAtomic.h>   // This library includes the ATOMIC_BLOCK macro
 #include "Configuration.h"  // Setup data structure in header file
 #include "Definitions.h"    // Local definitions in additional file
 
+AMS_5600 ams5600;           // Declare magnetic rotation sensor AS5600
 configData actconf;         // Actual configuration, Global variable
                             // Overload with old EEPROM configuration by start. It is necessarry for port and serspeed
                             // Don't change the position!
@@ -80,6 +83,8 @@ WiFiServer server(actconf.dataport);  // Declare WiFi NMEA server port
 // Setup section
 //*********************************************************************************************
 void setup() {
+   // Start I2C Bus
+   Wire.begin();
 
    // !!!!!! Uncomment this line if you using a new configuration structure !!!!!!
 //  saveEEPROMConfig(defconf);
@@ -107,11 +112,29 @@ void setup() {
     fver.toCharArray(actconf.fversion, 6);
     saveEEPROMConfig(actconf);
   }
+ 
+  // Pin definitions and settings for other wind sensor types
+  if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+    
+    // Pin redefinition for other wind sensor types (Original values see Definition.h)
+    // Attention! GPIO 15 is not available! (1Wire)
+    // Existing pins
+    ledPin = 14;                // LED GPIO 14 (fake) (D5)
+    INT_PIN1 = 2;               // Wind speed GPIO 2 (Hall sensor) (D4)
+    INT_PIN2 = 16;              // Wind direction GPIO 16 (Hall sensor fake) (D0)
+    // New pins
+    int SCL = 5;                // Wind direction magnetic sensor SCL GPIO 5 (AS5600) (D1)
+    int SDA = 4;                // Wind direction magnetic sensor SDA GPIO 4 (AS6500) (D2)
+
+    //Magnetic rotation sensor AS5600
+  }
   
-  // Pin Settings
+  // Pin settings
+  pinMode(INT_PIN1, INPUT_PULLUP);  // Interrupt input 1 speed
+  pinMode(INT_PIN2, INPUT_PULLUP);  // Interrupt input 2 direction
   pinMode(ledPin, OUTPUT);          // LED Pin output
   digitalWrite(ledPin, LOW);        // Switch LED on (inverted!)
-  
+
   Serial.begin(actconf.serspeed);   // Start serial communication
   delay(10);
 
@@ -146,15 +169,30 @@ void setup() {
   DebugPrintln(3, "Value Range [kn]: 0...73");
   DebugPrint(3, "Sensor Type: ");
   if(String(actconf.windType) == "R"){
-      DebugPrint(3, "Relative ");
+      DebugPrintln(3, "Relative ");
     }
     else{
-      DebugPrint(3, "True ");
-    }  
-  DebugPrintln(3, "wind direction");
-  DebugPrint(3, "Input Pin: GPIO ");
-  DebugPrintln(3, INT_PIN2);
-  DebugPrintln(3, "Value Range [°]: 0...360");  
+      DebugPrintln(3, "True ");
+    }
+  if(String(actconf.windSensorType) == "NOWA1000"){  
+    DebugPrintln(3, "Wind direction");
+    DebugPrint(3, "Input Pin: GPIO ");
+    DebugPrintln(3, INT_PIN2);
+    DebugPrintln(3, "Value Range [°]: 0...360");
+  }
+  if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+    DebugPrintln(3, "Wind direction: AS5600");
+    DebugPrint(3, "SCL: GPIO ");
+    DebugPrintln(3, SCL);
+    DebugPrint(3, "SDA: GPIO ");
+    DebugPrintln(3, SDA);
+    DebugPrint(3, "Magnitude [1]: ");
+    DebugPrintln(3, ams5600.getMagnitude());
+    DebugPrint(3, "Raw Angle [°]: ");
+    magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+    DebugPrintln(3, magsensor);
+  }
+    
   DebugPrintln(3, "Sensor Type: Sensor Temp 1Wire");
   DebugPrint(3, "Input Pin: GPIO ");
   DebugPrintln(3, ONE_WIRE_BUS);
@@ -266,17 +304,13 @@ void setup() {
   };
 
   //*************************************************
-  // Pin settings for interrupt
-  pinMode(INT_PIN1, INPUT_PULLUP);  // Interrupt input 1
-  pinMode(INT_PIN2, INPUT_PULLUP);  // Interrupt input 2
-
   timer1_attachInterrupt(counter);              // Start interrupt routine counter
   timer1_enable(TIM_DIV16, TIM_EDGE, TIM_LOOP); // 80MHz / 16 => 0,2us
   timer1_write(500);                            // Start timer1 100us @ 0,2us
-  Timer2.attach_ms(50, buildaverage);         // Start timer all 50ms
-  Timer3.attach_ms(SendPeriod, sendNMEA);     // Data transmission timer for NMEA
-  Timer4.attach_ms(RedSendPeriod, sendNMEA2); // Data transmission timer with reduced frequence for NMEA
-  Timer5.attach_ms(500, winddata);            // Start Timer all 500ms for wind data calculation
+  Timer2.attach_ms(50, buildaverage);           // Start timer all 50ms for average building and reading magnetic sensor
+  Timer3.attach_ms(SendPeriod, sendNMEA);       // Data transmission timer for NMEA
+  Timer4.attach_ms(RedSendPeriod, sendNMEA2);   // Data transmission timer with reduced frequence for NMEA
+  Timer5.attach_ms(500, winddata);              // Start Timer all 500ms for wind data calculation
   
   // Work around for start problem by high wind speed > 7rpm (cyclic boot loop)
   // Start interrupts at first in low level mode and wait 4s then change in falling slope mode

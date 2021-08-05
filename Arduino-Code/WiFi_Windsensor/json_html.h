@@ -199,6 +199,20 @@ String JSON()
     content +=F( ",");
     content +=F( "\"Unit\": \"bin\"");
     content +=F( "},");
+
+    content +=F( "\"MagFluxDensity\": {");
+    content +=F( "\"Value\": ");
+    content += String(magnitude);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"mT\"");
+    content +=F( "},");  
+    content +=F( "\"MagnetSensor\": {");
+    content +=F( "\"Value\": ");
+    content += String(magsensor);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"°\"");
+    content +=F( "},");
+    
     content +=F( "\"PulseCounter\": {");
     content +=F( "\"Value\": ");
     content += String(pcounter);

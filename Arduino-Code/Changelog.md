@@ -1,4 +1,9 @@
-**20210501 firmware_V1.09.wsb {+ (stable) +}**
+**20210805 firmware_V1.10.wsb {+ (stable) +}**
+
+* Add two new wind sensor types (Udo1 and [Udo2](https://github.com/jukolein/NMEA0183-Windsensor))
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+**20210501 firmware_V1.09.wsb {+ (old) +}**
 
 * CPU speed changed from 80 MHz to 160 MHz for more performance
 * nDNS service added for NMEA0183 ZeroConfig with AVnav

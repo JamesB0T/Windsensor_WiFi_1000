@@ -61,6 +61,9 @@ String Settings(int num, String vname[30], String value[30])
     if (vname[i] == "sensorid") {
       actconf.sensorID = toInteger(value[i]);
     }
+    if (vname[i] == "wstype") {
+      value[i].toCharArray(actconf.windSensorType, 10);
+    }
     if (vname[i] == "sendwsdata") {
       actconf.windSensor = toInteger(value[i]);
     }
@@ -214,6 +217,9 @@ String Settings(int num, String vname[30], String value[30])
     content += F("document.SetForm.sensorid.selectedIndex = ");
     content += getindex(sensorid, String(actconf.sensorID));
     content += F(";");
+    content += F("document.SetForm.wstype.selectedIndex = ");
+    content += getindex(wstype, String(actconf.windSensorType));
+    content += F(";");   
     content += F("document.SetForm.sendwsdata.selectedIndex = ");
     content += getindex(sendwsdata, String(actconf.windSensor));
     content += F(";");
@@ -519,6 +525,8 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>");
     content += F("<select name='wstype' size='1'>");
     content += F("<option value='NOWA1000'>NOWA1000</option>");
+    content += F("<option value='Udo1'>Udo1</option>");
+    content += F("<option value='Udo2'>Udo2</option>");
     content += F("</select>");
     content += F("</td>");
     content += F("<td></td>");
@@ -705,7 +713,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<input hidden type='text' name='debugmode' value='3'>");
     content += F("<input hidden type='text' name='serspeed' value='115200'>");
     content += F("<input hidden type='text' name='sensorid' value='0'>");
-    content += F("<input hidden type='text' name='wstype' value='NoWa1000'>");
+    content += F("<input hidden type='text' name='wstype' value='NOWA1000'>");
     content += F("<input hidden type='text' name='sendwsdata' value='1'>");
     content += F("<input hidden type='text' name='windtype' value='R'>");
     content += F("<input hidden type='text' name='average' value='1'>");

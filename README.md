@@ -103,6 +103,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] Web server as data display
     - [x] Andoid App
     - [x] External Diagnostic Tool
+	- [x] Support for other wind sensor types
 - [x] Components ordering
     - [x] Electronic board
     - [x] Mechanical parts

@@ -9,7 +9,7 @@ typedef struct {
   char password[31] = "12345678";           // Password for critical websides (settings, update and reboot)
   char devname[21] = "Windsensor WiFi 1000";// Device name for web configuration
   char crights[14] = "NoWa (C) 2021";       // Copy rights
-  char fversion[6] = "V1.09";               // Firmware version
+  char fversion[6] = "V1.10";               // Firmware version
   char license[12] = "GNU GPL V3";          // License type
   int debug = 3;                            // Debug mode 0=off 1=Errors 2=Errors + Warnings 3=Errors + Warnings + Messages
   char cssid[31] = "MyBoat";                // SSID of WiFi Client
@@ -29,7 +29,7 @@ typedef struct {
   char instrumentType[8] = "complex";       // Instrument type [simple|complex] simple = Canvas HTML5 , complex = Canvas Steel Series library
   int instrumentSize = 400;                 // Instrument size X * Y [pix] [200|250|300|350|400|450|500|550|600]
   int sensorID = 0;                         // ID of sensor [0...9]
-  char windSensorType[10] = "NoWa1000";     // Type of wind sensor [NoWa1000]
+  char windSensorType[10] = "NOWA1000";     // Type of wind sensor [NOWA1000|Udo1|Udo2]
   int windSensor = 1;                       // Send wind data 0=off 1=on (WIMWV, WIVWR, WIVPW, PWINF) or Serial or JSON
   char windType[2] = "R";                   // Type of wind R=relative, T=true
   int offset = 0;                           // Offset of wind direction [-180°...+180°]

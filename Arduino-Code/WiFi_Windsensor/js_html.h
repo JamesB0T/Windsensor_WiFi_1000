@@ -78,18 +78,29 @@ String JS()
  content +=F( "sensor1 = document.getElementById('sensor1');");
  content +=F( "sensor1.value = myObj.Device.MeasuringValues.Sensor1.Value;");
  content +=F( "document.getElementById('s1unit').innerHTML = myObj.Device.MeasuringValues.Sensor1.Unit;");
- content +=F( "sensor2 = document.getElementById('sensor2');");
- content +=F( "sensor2.value = myObj.Device.MeasuringValues.Sensor2.Value;");
- content +=F( "document.getElementById('s2unit').innerHTML = myObj.Device.MeasuringValues.Sensor2.Unit;");
- content +=F( "pcounter = document.getElementById('pcounter');");
- content +=F( "pcounter.value = myObj.Device.MeasuringValues.PulseCounter.Value;");
- content +=F( "document.getElementById('pcunit').innerHTML = myObj.Device.MeasuringValues.PulseCounter.Unit;");
- content +=F( "time1 = document.getElementById('time1');");
- content +=F( "time1.value = myObj.Device.MeasuringValues.Time1.Value;");
- content +=F( "document.getElementById('t1unit').innerHTML = myObj.Device.MeasuringValues.Time1.Unit;");
- content +=F( "time2 = document.getElementById('time2');");
- content +=F( "time2.value = myObj.Device.MeasuringValues.Time2.Value;");
- content +=F( "document.getElementById('t2unit').innerHTML = myObj.Device.MeasuringValues.Time2.Unit;");
+ if(String(actconf.windSensorType) == "NOWA1000"){
+   content +=F( "sensor2 = document.getElementById('sensor2');");
+   content +=F( "sensor2.value = myObj.Device.MeasuringValues.Sensor2.Value;");
+   content +=F( "document.getElementById('s2unit').innerHTML = myObj.Device.MeasuringValues.Sensor2.Unit;");
+   content +=F( "pcounter = document.getElementById('pcounter');");
+   content +=F( "pcounter.value = myObj.Device.MeasuringValues.PulseCounter.Value;");
+   content +=F( "document.getElementById('pcunit').innerHTML = myObj.Device.MeasuringValues.PulseCounter.Unit;");
+   content +=F( "time1 = document.getElementById('time1');");
+   content +=F( "time1.value = myObj.Device.MeasuringValues.Time1.Value;");
+   content +=F( "document.getElementById('t1unit').innerHTML = myObj.Device.MeasuringValues.Time1.Unit;");
+   content +=F( "time2 = document.getElementById('time2');");
+   content +=F( "time2.value = myObj.Device.MeasuringValues.Time2.Value;");
+   content +=F( "document.getElementById('t2unit').innerHTML = myObj.Device.MeasuringValues.Time2.Unit;");
+ }
+ if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+   content +=F( "magnitude = document.getElementById('magnitude');");
+   content +=F( "magnitude.value = myObj.Device.MeasuringValues.MagFluxDensity.Value;");
+   content +=F( "document.getElementById('magnitudeunit').innerHTML = myObj.Device.MeasuringValues.MagFluxDensity.Unit;");
+   
+   content +=F( "magsensor = document.getElementById('magsensor');");
+   content +=F( "magsensor.value = myObj.Device.MeasuringValues.MagnetSensor.Value;");
+   content +=F( "document.getElementById('magunit').innerHTML = myObj.Device.MeasuringValues.MagnetSensor.Unit;");
+ }
  content +=F( "rotspeed = document.getElementById('rotspeed');");
  content +=F( "rotspeed.value = myObj.Device.MeasuringValues.RotationSpeed.Value;");
  content +=F( "document.getElementById('rotunit').innerHTML = myObj.Device.MeasuringValues.RotationSpeed.Unit;");

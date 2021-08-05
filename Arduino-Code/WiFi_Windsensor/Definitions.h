@@ -3,33 +3,32 @@
 
 // Passwort settings
 String transactionID = String(random(0, 99999999));// Generate a random transaction ID by initialisation
-String raw = "";                    // Uncrypted raw data
-String crypt = "";                  // Crypted data
+String raw = "";                  // Uncrypted raw data
+String crypt = "";                // Crypted data
 
 // EEPROM settings (max size is 4096 Byte)
-int cfgStart = 1024;                // Start adress in EEPROM (Attention! The first 32 Byte are used beginning with adress 0)
-int sizeEEPROM = 2048;              // Used size of EEPROM 2kB (limit for config file size)
+int cfgStart = 1024;              // Start adress in EEPROM (Attention! The first 32 Byte are used beginning with adress 0)
+int sizeEEPROM = 2048;            // Used size of EEPROM 2kB (limit for config file size)
 
 // WLAN client settings
-String hname;                       // Hostname
-int maxccounter;                    // Maximum number for connection tests until aborted (maxcounter = 60; 60 * 500ms = 30s waiting time)
-int ccounter;                       // Actual connection test counter
+String hname;                     // Hostname
+int maxccounter;                  // Maximum number for connection tests until aborted (maxcounter = 60; 60 * 500ms = 30s waiting time)
+int ccounter;                     // Actual connection test counter
 
 // Settings for NMEA server 
-int SendPeriod = 1000;              // SendPeriod in [ms], Attention! Range is limited [500...2000]
-int RedSendPeriod = 3000;           // Reduced send period [ms] when wind speed is zero, range [2000...10000]
-volatile bool flag1 = false;        // Flag for data sending (normal speed)
-volatile bool flag2 = false;        // Flag for data sending (reduced speed)
-volatile bool flag3 = false;        // Flag for zero wind speed detection (true = zero)
+int SendPeriod = 1000;            // SendPeriod in [ms], Attention! Range is limited [500...2000]
+int RedSendPeriod = 3000;         // Reduced send period [ms] when wind speed is zero, range [2000...10000]
+volatile bool flag1 = false;      // Flag for data sending (normal speed)
+volatile bool flag2 = false;      // Flag for data sending (reduced speed)
+volatile bool flag3 = false;      // Flag for zero wind speed detection (true = zero)
 
-// Definitions input pins for wind speed and wind direction
-#define INT_PIN1 5                  // Wind speed D1, GPIO 5
-#define INT_PIN2 4                  // Wind direction D2, GPIO 4
+// Pin definitions NOWA1000 wind sensor (default)
+int ledPin = 2;                   // LED low activ GPIO 2 (D2)
+int INT_PIN1 = 5;                 // Wind speed GPIO 5 (Hall sensor) (D1)
+int INT_PIN2 = 4;                 // Wind direction GPIO 4 (Hall sensor) (D2)
+int ONE_WIRE_BUS = 15;            // 1Wire bus on GPIO 15 (D8)
 
-// Definition 1Wire
-#define ONE_WIRE_BUS 15           // 1Wire bus on pin 15 (D8)
-
-// Measuring data (used in intetrupt)
+// Measuring data (used in interrupt)
 volatile int marker1 = 0;         // Wind speed
 volatile int marker2 = 0;         // Wind direction
 volatile int marker3 = 0;         // Marker for data saving in a array (sensor 1 and 2 binary switching data)
@@ -74,17 +73,14 @@ volatile float winddirection2;    // Wind direction 0...180[°] in relation to m
 volatile float dirresolution;     // Resolution of wind direction [°]
 volatile int sensor1;             // Output hallsensor signal for wind speed (Web interface)
 volatile int sensor2;             // Output hallsensor signal for wind direction (Web interface)
+volatile float magsensor;         // Output magnetic sensor (AS5600) for wind direction 0...360° (Web interface)
+volatile float magnitude;         // Magetic flux density of magnetic sensor (AS5600) [mT]
 
 volatile bool sensor1TimeArray[1000]; // Time array for Hall sensor 1 (Debug Mode)
 volatile bool sensor2TimeArray[1000]; // Time array for Hall sensor 2 (Debug Mode)
 
 // For calculating demo data
 unsigned int demoSet = 0;         // number of DEMO set for timearrays
-
-
-// Pin definitions for WIMO D1 mini
-const int ledPin = D4;            // Pin GPIO 02 (D4), LED is low activ
-const int ssPin = D8;             // Pin GPIO 15 (D8), SS or CS for SDCard
 
 // Style parameter
 int style = 1;                    // Toggle display between day (1) und night (0) illumination
@@ -103,6 +99,7 @@ String servermode[5] = {"0", "1", "2", "3", "4"};
 String debugmode[4] = {"0", "1", "2", "3"};
 String serspeed[10] = {"300", "1200", "2400", "4800", "9600", "19200", "38400", "57600", "74880", "115200"};
 String sensorid[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+String wstype[3] = {"NOWA1000", "Udo1", "Udo2"};
 String sendwsdata[2] = {"0", "1"};
 String windtype[2] = {"R", "T"};
 String averages[10] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};

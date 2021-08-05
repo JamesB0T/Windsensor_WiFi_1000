@@ -208,30 +208,46 @@ String Devinfo()
  content +=F( "<td>[<data id='s1unit'></data>]</td>");
  content +=F( "</tr>");
 
- content +=F( "<tr>");
- content +=F( "<td>Sensor 2 (Direction)</td>");
- content +=F( "<td><input id='sensor2' type='text' name='wsensor2' size='15' value='0'></td>");
- content +=F( "<td>[<data id='s2unit'></data>]</td>");
- content +=F( "</tr>");
+ if(String(actconf.windSensorType) == "NOWA1000"){
+   content +=F( "<tr>");
+   content +=F( "<td>Sensor 2 (Direction)</td>");
+   content +=F( "<td><input id='sensor2' type='text' name='wsensor2' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='s2unit'></data>]</td>");
+   content +=F( "</tr>");
 
- content +=F( "<tr>");
- content +=F( "<td>Pulse Counter</td>");
- content +=F( "<td><input id='pcounter' type='text' name='pcounter' size='15' value='0'></td>");
- content +=F( "<td>[<data id='pcunit'></data>]</td>");
- content +=F( "</tr>");
+   content +=F( "<tr>");
+   content +=F( "<td>Pulse Counter</td>");
+   content +=F( "<td><input id='pcounter' type='text' name='pcounter' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='pcunit'></data>]</td>");
+   content +=F( "</tr>");
+  
+   content +=F( "<tr>");
+   content +=F( "<td>Time 1 (Speed)</td>");
+   content +=F( "<td><input id='time1' type='text' name='wtime1' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='t1unit'></data>]</td>");
+   content +=F( "</tr>");
+  
+   content +=F( "<tr>");
+   content +=F( "<td>Time 2 (Direction)</td>");
+   content +=F( "<td><input id='time2' type='text' name='wtime2' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='t2unit'></data>]</td>");
+   content +=F( "</tr>");
+ }
 
- content +=F( "<tr>");
- content +=F( "<td>Time 1 (Speed)</td>");
- content +=F( "<td><input id='time1' type='text' name='wtime1' size='15' value='0'></td>");
- content +=F( "<td>[<data id='t1unit'></data>]</td>");
- content +=F( "</tr>");
-
- content +=F( "<tr>");
- content +=F( "<td>Time 2 (Direction)</td>");
- content +=F( "<td><input id='time2' type='text' name='wtime2' size='15' value='0'></td>");
- content +=F( "<td>[<data id='t2unit'></data>]</td>");
- content +=F( "</tr>");
-
+ if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+   content +=F( "<tr>");
+   content +=F( "<td>Magn. Flux Density</td>");
+   content +=F( "<td><input id='magnitude' type='text' name='magnitude' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='magnitudeunit'></data>]</td>");
+   content +=F( "</tr>");
+   
+   content +=F( "<tr>");
+   content +=F( "<td>Magn. Sensor (Direction)</td>");
+   content +=F( "<td><input id='magsensor' type='text' name='magsensor' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='magunit'></data>]</td>");
+   content +=F( "</tr>");
+ }
+  
  content +=F( "<tr>");
  content +=F( "<td>Rotation Speed</td>");
  content +=F( "<td><input id='rotspeed' type='text' name='wrotspeed' size='15' value='0'></td>");

@@ -36,10 +36,21 @@ void calculationData(){
       time1_avg = 0.1;
     }
 
-    // Calculate only wind direction when time values ok
-    if(time1_avg < 1000 && time2_avg < 1000){
-      // Raw wind direction 0...360°, dir[°] = time2[ms] / time1[ms] *360
-      rawwinddirection = time2_avg / time1_avg * 360;
+    // Calculate wind direction for NoRa1000 wind sensor
+    if(String(actconf.windSensorType) == "NOWA1000"){
+      // Calculate only wind direction when time values ok
+      if(time1_avg < 1000 && time2_avg < 1000){
+        // Raw wind direction 0...360°, dir[°] = time2[ms] / time1[ms] *360
+        rawwinddirection = time2_avg / time1_avg * 360;
+      }
+      magnitude = 0; // Set values for AS5600
+      magsensor = 0;
+    }
+    // Calculate wind direction for Udo1 and Udo2 wind sensor
+    if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+      magnitude = ams5600.getMagnitude();
+      magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+      rawwinddirection = magsensor;
     }
     // Wind direction with offset
     if((rawwinddirection + actconf.offset) > 360){
@@ -56,15 +67,28 @@ void calculationData(){
     else{
       winddirection2 = 360 - winddirection;
     }
-    // Wind direction resolution res[°] = 360 / time1
-    dirresolution = 360 / (time1 * 10);  // now 100us counter
-    if(dirresolution > 20.0){
-      dirresolution = 0.0;
+    // Calculate wind direction resolution for NoRa1000 wind sensor
+    if(String(actconf.windSensorType) == "NOWA1000"){
+      // Wind direction resolution res[°] = 360 / time1
+      dirresolution = 360 / (time1 * 10);  // now 100us counter
+      if(dirresolution > 20.0){
+        dirresolution = 0.0;
+      }
+    }
+    // Calculate wind direction resolution for Udo1 and Udo2 wind sensor
+    if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+      dirresolution = 0.087;
     }
     // Calculate only wind speed when time values ok
     if(time1_avg < 1000 && time2_avg < 1000){
-      // Wind speed n[Hz] = 1 / time1[ms] *1000
-      windspeed_hz = 1.0 / time1_avg * 1000;
+      if(String(actconf.windSensorType) == "NOWA1000"){
+        // Wind speed n[Hz] = 1 / time1[ms] *1000  // 1 pulse per round
+        windspeed_hz = 1.0 / time1_avg * 1000;
+      }
+      if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+        // Wind speed n[Hz] = 1 / time1[ms] *1000 / 2
+        windspeed_hz = 1.0 / time1_avg * 1000 / 2; // 2 pulses per round
+      }
     }
 
     // Eleminate the big start value direct after wind sensor start
@@ -126,6 +150,9 @@ void simulationData(){
      }
      sensor1 =  int(random(0, 2));
      sensor2 =  int(random(0, 2));
+
+     magnitude = int(random(300, 450));
+     magsensor = int(random(0, 360));
      
 //**************************************************************************
 
