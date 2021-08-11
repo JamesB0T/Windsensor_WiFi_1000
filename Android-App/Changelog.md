@@ -1,3 +1,7 @@
+**20210811 Windsensor_WiFi_1000_6.apk {+ (stable) +}**
+
+* Necessary from firmware V1.11 (different device name)
+
 **20190205 Windsensor_WiFi_1000_5.apk {+ (stable) +}**
 
 * If the App running then disable the display timeout
