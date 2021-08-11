@@ -36,8 +36,8 @@ void calculationData(){
       time1_avg = 0.1;
     }
 
-    // Calculate wind direction for NoRa1000 wind sensor
-    if(String(actconf.windSensorType) == "NOWA1000"){
+    // Calculate wind direction for WiFi1000 wind sensor
+    if(String(actconf.windSensorType) == "WiFi 1000"){
       // Calculate only wind direction when time values ok
       if(time1_avg < 1000 && time2_avg < 1000){
         // Raw wind direction 0...360°, dir[°] = time2[ms] / time1[ms] *360
@@ -46,10 +46,23 @@ void calculationData(){
       magnitude = 0; // Set values for AS5600
       magsensor = 0;
     }
-    // Calculate wind direction for Udo1 and Udo2 wind sensor
-    if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
-      magnitude = ams5600.getMagnitude();
-      magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+    // Calculate wind direction for Yachta and Jukolein wind sensor
+    if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+      // Read only magnetic values if the I2C device is ready
+      if(i2cready == 1){
+        magnitude = ams5600.getMagnitude();
+        magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+        if(magsensor < 0){
+          magsensor = 0;
+        }
+        if(magsensor > 360){
+          magsensor = 360;
+        }
+      }
+      else{
+        magnitude = 0;
+        magsensor = 0;
+      }
       rawwinddirection = magsensor;
     }
     // Wind direction with offset
@@ -68,24 +81,24 @@ void calculationData(){
       winddirection2 = 360 - winddirection;
     }
     // Calculate wind direction resolution for NoRa1000 wind sensor
-    if(String(actconf.windSensorType) == "NOWA1000"){
+    if(String(actconf.windSensorType) == "WiFi 1000"){
       // Wind direction resolution res[°] = 360 / time1
       dirresolution = 360 / (time1 * 10);  // now 100us counter
       if(dirresolution > 20.0){
         dirresolution = 0.0;
       }
     }
-    // Calculate wind direction resolution for Udo1 and Udo2 wind sensor
-    if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+    // Calculate wind direction resolution for Yachta and Jukolein wind sensor
+    if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
       dirresolution = 0.087;
     }
     // Calculate only wind speed when time values ok
     if(time1_avg < 1000 && time2_avg < 1000){
-      if(String(actconf.windSensorType) == "NOWA1000"){
+      if(String(actconf.windSensorType) == "WiFi 1000"){
         // Wind speed n[Hz] = 1 / time1[ms] *1000  // 1 pulse per round
         windspeed_hz = 1.0 / time1_avg * 1000;
       }
-      if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+      if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
         // Wind speed n[Hz] = 1 / time1[ms] *1000 / 2
         windspeed_hz = 1.0 / time1_avg * 1000 / 2; // 2 pulses per round
       }
@@ -102,9 +115,14 @@ void calculationData(){
        windspeed_hz = 0.0;
     }
 
-
-    // Wind speed, v[m/s] = (2 * Pi * n[Hz] * r[m]) / lamda[1]
-    windspeed_mps = (2 * pi * windspeed_hz * radius) / lamda;
+    if(String(actconf.windSensorType) == "WiFi 1000"){
+      // Wind speed, v[m/s] = (2 * Pi * n[Hz] * r[m]) / lamda[1]
+      windspeed_mps = (2 * pi * windspeed_hz * radius) / lamda;
+    }
+    if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+      // Wind speed, v[m/s] = (2 * Pi * n[Hz] * r[m]) / lamda[1]
+      windspeed_mps = (2 * pi * windspeed_hz * radius2) / lamda;
+    }
     // Calibration of wind speed data
     windspeed_mps = windspeed_mps * actconf.calslope + actconf.caloffset;
     // Wind speed, v[km/h] = v[m/s] * 3.6

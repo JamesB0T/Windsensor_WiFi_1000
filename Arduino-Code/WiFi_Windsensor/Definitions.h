@@ -22,11 +22,15 @@ volatile bool flag1 = false;      // Flag for data sending (normal speed)
 volatile bool flag2 = false;      // Flag for data sending (reduced speed)
 volatile bool flag3 = false;      // Flag for zero wind speed detection (true = zero)
 
-// Pin definitions NOWA1000 wind sensor (default)
+// Pin definitions WiFi 1000 wind sensor (default)
 int ledPin = 2;                   // LED low activ GPIO 2 (D2)
 int INT_PIN1 = 5;                 // Wind speed GPIO 5 (Hall sensor) (D1)
 int INT_PIN2 = 4;                 // Wind direction GPIO 4 (Hall sensor) (D2)
 int ONE_WIRE_BUS = 15;            // 1Wire bus on GPIO 15 (D8)
+
+// I2C definitions
+int i2cready = 0;                 // Result of I2C scan
+byte address = 0x36;              // I2C address AS5600
 
 // Measuring data (used in interrupt)
 volatile int marker1 = 0;         // Wind speed
@@ -48,7 +52,8 @@ volatile int mc = 0;              // Modulo counter
 volatile float time1_avg;         // Average wind speed (time in [ms] for one rotation)
 volatile float time2_avg;         // Average direction (time in [ms] between wind speed sensor and wind direction sensor)
 
-static float radius = 0.06;       // Radius between center and middle of half hemisphere position
+static float radius = 0.06;       // Radius between center and middle of half hemisphere position (WiFi 1000)
+static float radius2 = 0.043;     // Radius between center and middle of half hemisphere position (Yachta|Jukolein)
 static float lamda = 0.3;         // Lambda is a constant for amemometer type with 3 hemisphere, lamda = 0,3
 static float pi = 3.14159265358979;   // Pi constant
 
@@ -73,8 +78,8 @@ volatile float winddirection2;    // Wind direction 0...180[°] in relation to m
 volatile float dirresolution;     // Resolution of wind direction [°]
 volatile int sensor1;             // Output hallsensor signal for wind speed (Web interface)
 volatile int sensor2;             // Output hallsensor signal for wind direction (Web interface)
-volatile float magsensor;         // Output magnetic sensor (AS5600) for wind direction 0...360° (Web interface)
-volatile float magnitude;         // Magetic flux density of magnetic sensor (AS5600) [mT]
+volatile float magsensor;         // Output magnetic sensor (AS5600) for wind direction 0...360° without offset
+volatile float magnitude;         // Magetic flux density of magnetic sensor in [mT] (AS5600)
 
 volatile bool sensor1TimeArray[1000]; // Time array for Hall sensor 1 (Debug Mode)
 volatile bool sensor2TimeArray[1000]; // Time array for Hall sensor 2 (Debug Mode)
@@ -99,7 +104,7 @@ String servermode[5] = {"0", "1", "2", "3", "4"};
 String debugmode[4] = {"0", "1", "2", "3"};
 String serspeed[10] = {"300", "1200", "2400", "4800", "9600", "19200", "38400", "57600", "74880", "115200"};
 String sensorid[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-String wstype[3] = {"NOWA1000", "Udo1", "Udo2"};
+String wstype[5] = {"WiFi 1000", "Yachta", "Jukolein", "Davis", "Ventus"};
 String sendwsdata[2] = {"0", "1"};
 String windtype[2] = {"R", "T"};
 String averages[10] = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"};

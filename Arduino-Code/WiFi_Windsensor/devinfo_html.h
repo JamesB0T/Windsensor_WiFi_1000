@@ -22,7 +22,7 @@ String Devinfo()
  
  // Web page title
  content +=F( "<h2>");
- content += String(actconf.devname);
+ content += String(actconf.devname) + " " + String(actconf.windSensorType);
  content +=F( "</h2>");
  content += String(actconf.crights);
  content +=F( ", "); 
@@ -208,7 +208,7 @@ String Devinfo()
  content +=F( "<td>[<data id='s1unit'></data>]</td>");
  content +=F( "</tr>");
 
- if(String(actconf.windSensorType) == "NOWA1000"){
+ if(String(actconf.windSensorType) == "WiFi 1000"){
    content +=F( "<tr>");
    content +=F( "<td>Sensor 2 (Direction)</td>");
    content +=F( "<td><input id='sensor2' type='text' name='wsensor2' size='15' value='0'></td>");
@@ -234,7 +234,7 @@ String Devinfo()
    content +=F( "</tr>");
  }
 
- if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+ if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
    content +=F( "<tr>");
    content +=F( "<td>Magn. Flux Density</td>");
    content +=F( "<td><input id='magnitude' type='text' name='magnitude' size='15' value='0'></td>");

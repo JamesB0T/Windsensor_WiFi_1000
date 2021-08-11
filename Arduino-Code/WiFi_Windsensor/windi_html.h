@@ -59,7 +59,7 @@ String Windi()
  
  // Web page title
  content += F("<h2>");
- content += String(actconf.devname);
+ content += String(actconf.devname) + " " + String(actconf.windSensorType);
  content += F("</h2>");
  content += String(actconf.crights);
  content += F(", "); 

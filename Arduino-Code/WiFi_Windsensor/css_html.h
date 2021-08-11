@@ -42,7 +42,7 @@ String CSS()
  blackcontent += F("0px 1px 0px rgba(255,255,255,1);");
  blackcontent += F("}");
  
- // Text color definitions for heat letters
+ // Text color definitions for head letters
  blackcontent += F("a: {color: rgb(255,255,255);}");
  blackcontent += F("h1 {color: rgb(255,255,255);}");
  blackcontent += F("h2 {color: rgb(255,255,255);}");
@@ -74,6 +74,11 @@ String CSS()
  blackcontent += F("linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));");
  blackcontent += F("background-size: 10px 10px, 10px 10px, 10px 5px;");
  blackcontent += F("background-position: 0px 0px, 5px 5px, 0px 0px;");
+ blackcontent += F("}");
+
+ // SVG line colors
+ blackcontent += F("svg {");
+ blackcontent += F("stroke: #FFFFFF;");
  blackcontent += F("}");
 
  // Page nightstyle in black background an red font
@@ -110,7 +115,7 @@ String CSS()
  redcontent += F("box-shadow:");
  redcontent += F("0px 1px 3px rgba(000,000,000,0.5),");
  redcontent += F("inset 0px 0px 2px rgba(245,12,12,1);");
- redcontent += F("text-shadow:");
+ redcontent += F("text-shadow:");content +=F( "<td></td>");
  redcontent += F("0px -1px 0px rgba(000,000,000,0.2),");
  redcontent += F("0px 1px 0px rgba(71,68,71,0.4);");
  redcontent += F("}");
@@ -145,6 +150,11 @@ String CSS()
  redcontent += F("background-image: linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(45deg, black 25%, transparent 25%, transparent 75%, black 75%, black), linear-gradient(to bottom, rgb(8, 8, 8), rgb(32, 32, 32));");
  redcontent += F("background-size: 10px 10px, 10px 10px, 10px 5px;");
  redcontent += F("background-position: 0px 0px, 5px 5px, 0px 0px;");
+ redcontent += F("}");
+
+ // SVG line colors
+ redcontent += F("svg {");
+ redcontent += F("stroke: #C0C0C0;");
  redcontent += F("}");
 
  // Page daystyle in white background an black font
@@ -216,6 +226,11 @@ String CSS()
 // whitecontent += F("  background-color: rgb(0, 0, 0);");
  whitecontent += F("background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.4));");
 // whitecontent += F("  background-image: url('https://www.transparenttextures.com/patterns/knitted-netting.png');"); 
+ whitecontent += F("}");
+
+ // SVG line colors
+ whitecontent += F("svg {");
+ whitecontent += F("stroke: #404040;");
  whitecontent += F("}");
 
  // Style activation

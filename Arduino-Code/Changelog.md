@@ -1,4 +1,17 @@
-**20210805 firmware_V1.10.wsb {+ (stable) +}**
+**20210805 firmware_V1.11.wsb {+ (stable) +}**
+
+* Fix for hanging I2C bus if the AS5600 is not present
+* Fix jumping direction values by using AS5600
+* Rename the wind sensor types and add two new sensors:
+	old: (NOWA1000|Udo1|Udo2)
+	new: (WiFi1000|Yachta|Jukolein|Davis|Ventus)
+* Using different speed calculations for different wind sensor types (radius)
+* Using pictograms for wind values
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+{- Attention! After update changes all settings to default values. Please renew the settings. -}
+
+**20210805 firmware_V1.10.wsb {- (critical) -}**
 
 * Add two new wind sensor types (Udo1 and [Udo2](https://github.com/jukolein/NMEA0183-Windsensor))
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)

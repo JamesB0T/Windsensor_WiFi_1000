@@ -142,7 +142,7 @@ String Settings(int num, String vname[30], String value[30])
    
    // Web page title
    content +=F( "<h2>");
-   content += String(actconf.devname);
+   content += String(actconf.devname) + " " + String(actconf.windSensorType);
    content +=F( "</h2>");
    content += String(actconf.crights);
    content +=F( ", "); 
@@ -286,7 +286,7 @@ String Settings(int num, String vname[30], String value[30])
     
     // Web page title
     content += F("<h2>");
-    content += String(actconf.devname);
+    content += String(actconf.devname) + " " + String(actconf.windSensorType);
     content += F("</h2>");
     content += String(actconf.crights);
     content += F(", "); 
@@ -524,9 +524,11 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>Wind Sensor Type</td>");
     content += F("<td>");
     content += F("<select name='wstype' size='1'>");
-    content += F("<option value='NOWA1000'>NOWA1000</option>");
-    content += F("<option value='Udo1'>Udo1</option>");
-    content += F("<option value='Udo2'>Udo2</option>");
+    content += F("<option value='WiFi 1000'>WiFi 1000</option>");
+    content += F("<option value='Yachta'>Yachta</option>");
+    content += F("<option value='Jukolein'>Jukolein</option>");
+    content += F("<option value='Davis'>Davis</option>");
+    content += F("<option value='Ventus'>Ventus</option>");
     content += F("</select>");
     content += F("</td>");
     content += F("<td></td>");
@@ -713,7 +715,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<input hidden type='text' name='debugmode' value='3'>");
     content += F("<input hidden type='text' name='serspeed' value='115200'>");
     content += F("<input hidden type='text' name='sensorid' value='0'>");
-    content += F("<input hidden type='text' name='wstype' value='NOWA1000'>");
+    content += F("<input hidden type='text' name='wstype' value='WiFi 1000'>");
     content += F("<input hidden type='text' name='sendwsdata' value='1'>");
     content += F("<input hidden type='text' name='windtype' value='R'>");
     content += F("<input hidden type='text' name='average' value='1'>");

@@ -40,7 +40,7 @@ String Reset(int num, String vname[20], String value[20])
    
    // Web page title
    content +=F( "<h2>");
-   content += String(actconf.devname);
+   content += String(actconf.devname) + " " + String(actconf.windSensorType);
    content +=F( "</h2>");
    content += String(actconf.crights);
    content +=F( ", "); 
@@ -82,7 +82,7 @@ String Reset(int num, String vname[20], String value[20])
    
    // Web page title
    content +=F( "<h2>");
-   content += String(actconf.devname);
+   content += String(actconf.devname) + " " + String(actconf.windSensorType);
    content +=F( "</h2>");
    content += String(actconf.crights);
    content +=F( ", "); 

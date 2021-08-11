@@ -69,7 +69,7 @@ String Windv()
  
  // Web page title
  content +=F( "<h2>");
- content += String(actconf.devname);
+ content += String(actconf.devname) + " " + String(actconf.windSensorType);
  content +=F( "</h2>");
  content += String(actconf.crights);
  content +=F( ", "); 
@@ -84,13 +84,31 @@ String Windv()
  content +=F( "<table>");
  
  content +=F( "<tr>");
- content +=F( "<td></td>");
+ content +=F( "<td>");
+ content +=F( "<div class='svg'>");
+ content +=F( "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-gps' width='40' height='40' viewBox='0 0 24 24' stroke-width='1.5' stroke='#FFFFFF' fill='none' stroke-linecap='round' stroke-linejoin='round'>");
+ content +=F( "<path stroke='none' d='M0 0h24v24H0z' fill='none'/>");
+ content +=F( "<circle cx='12' cy='12' r='9' />");
+ content +=F( "<path d='M12 17l-1 -4l-4 -1l9 -4z' />");
+ content +=F( "</svg>");
+ content +=F( "</div>");
+ content +=F( "</td>");
  content +=F( "<td><data id='winddir'></data></td>");
  content +=F( "<td><data id='dirunit'></data></td>");
  content +=F( "</tr>");
 
  content +=F( "<tr>");
- content +=F( "<td></td>");
+ content +=F( "<td>");
+ content +=F( "<div class='svg'>");
+
+ content +=F( "<svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-wind' width='40' height='40' viewBox='0 0 24 24' stroke-width='1.5' stroke='#FFFFFF' fill='none' stroke-linecap='round' stroke-linejoin='round'>");
+ content +=F( "<path stroke='none' d='M0 0h24v24H0z' fill='none'/>");
+ content +=F( "<path d='M5 8h8.5a2.5 2.5 0 1 0 -2.34 -3.24' />");
+ content +=F( "<path d='M3 12h15.5a2.5 2.5 0 1 1 -2.34 3.24' />");
+ content +=F( "<path d='M4 16h5.5a2.5 2.5 0 1 1 -2.34 3.24' />");
+ content +=F( "</svg>");
+ content +=F( "</div>");
+ content +=F( "</td>");
  content +=F( "<td><data id='windspeed'></data></td>");
  content +=F( "<td><data id='speedunit'></data></td>");
  content +=F( "</tr>");

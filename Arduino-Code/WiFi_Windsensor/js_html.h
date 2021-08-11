@@ -78,7 +78,7 @@ String JS()
  content +=F( "sensor1 = document.getElementById('sensor1');");
  content +=F( "sensor1.value = myObj.Device.MeasuringValues.Sensor1.Value;");
  content +=F( "document.getElementById('s1unit').innerHTML = myObj.Device.MeasuringValues.Sensor1.Unit;");
- if(String(actconf.windSensorType) == "NOWA1000"){
+ if(String(actconf.windSensorType) == "WiFi 1000"){
    content +=F( "sensor2 = document.getElementById('sensor2');");
    content +=F( "sensor2.value = myObj.Device.MeasuringValues.Sensor2.Value;");
    content +=F( "document.getElementById('s2unit').innerHTML = myObj.Device.MeasuringValues.Sensor2.Unit;");
@@ -92,7 +92,7 @@ String JS()
    content +=F( "time2.value = myObj.Device.MeasuringValues.Time2.Value;");
    content +=F( "document.getElementById('t2unit').innerHTML = myObj.Device.MeasuringValues.Time2.Unit;");
  }
- if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+ if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
    content +=F( "magnitude = document.getElementById('magnitude');");
    content +=F( "magnitude.value = myObj.Device.MeasuringValues.MagFluxDensity.Value;");
    content +=F( "document.getElementById('magnitudeunit').innerHTML = myObj.Device.MeasuringValues.MagFluxDensity.Unit;");

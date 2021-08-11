@@ -114,7 +114,7 @@ void setup() {
   }
  
   // Pin definitions and settings for other wind sensor types
-  if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
     
     // Pin redefinition for other wind sensor types (Original values see Definition.h)
     // Attention! GPIO 15 is not available! (1Wire)
@@ -145,6 +145,8 @@ void setup() {
   DebugPrintln(3, "Booting Sketch...");
   DebugPrint(3, actconf.devname);
   DebugPrint(3, " ");
+  DebugPrint(3, actconf.windSensorType);
+  DebugPrint(3, " ");
   DebugPrint(3, actconf.fversion);
   DebugPrintln(3, " (C) Norbert Walter");
   DebugPrintln(3, "*********************************************");
@@ -173,24 +175,40 @@ void setup() {
     }
     else{
       DebugPrintln(3, "True ");
-    }
-  if(String(actconf.windSensorType) == "NOWA1000"){  
+    }    
+  if(String(actconf.windSensorType) == "WiFi 1000"){  
     DebugPrintln(3, "Wind direction");
     DebugPrint(3, "Input Pin: GPIO ");
     DebugPrintln(3, INT_PIN2);
     DebugPrintln(3, "Value Range [°]: 0...360");
   }
-  if(String(actconf.windSensorType) == "Udo1" || String(actconf.windSensorType) == "Udo2"){
+  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
     DebugPrintln(3, "Wind direction: AS5600");
     DebugPrint(3, "SCL: GPIO ");
     DebugPrintln(3, SCL);
     DebugPrint(3, "SDA: GPIO ");
     DebugPrintln(3, SDA);
-    DebugPrint(3, "Magnitude [1]: ");
-    DebugPrintln(3, ams5600.getMagnitude());
-    DebugPrint(3, "Raw Angle [°]: ");
-    magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
-    DebugPrintln(3, magsensor);
+    DebugPrint(3, "Scan I2C at address 0x");
+    if (address < 0x10) {
+      DebugPrint(3, "0");
+    }
+    DebugPrint(3, String(address, HEX));
+    DebugPrint(3, ": ");
+    Wire.beginTransmission(address);
+    if(Wire.endTransmission() == 0){
+      i2cready = 1;                               // Result I2C scan
+      DebugPrintln(3, "ready");
+      DebugPrint(3, "Magnitude [1]: ");
+      DebugPrintln(3, ams5600.getMagnitude());
+      DebugPrint(3, "Raw Angle [°]: ");
+      magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+      DebugPrintln(3, magsensor);
+    }
+    else{
+      i2cready = 0;                               // Result I2C scan
+      DebugPrintln(3, "error");
+      DebugPrintln(3, "Stop I2C, no device AS5600");
+    }
   }
     
   DebugPrintln(3, "Sensor Type: Sensor Temp 1Wire");
