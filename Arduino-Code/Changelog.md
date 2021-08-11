@@ -8,6 +8,7 @@
 * Using different speed calculations for different wind sensor types (radius)
 * Using pictograms for wind values
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+* {- Needs new Android App! -}
 
 {- Attention! After update changes all settings to default values. Please renew the settings. -}
 
