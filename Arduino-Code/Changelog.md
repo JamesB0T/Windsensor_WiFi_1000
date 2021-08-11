@@ -1,4 +1,4 @@
-**20210805 firmware_V1.11.wsb {+ (stable) +}**
+**20210811 firmware_V1.11.wsb {+ (stable) +}**
 
 * Fix for hanging I2C bus if the AS5600 is not present
 * Fix jumping direction values by using AS5600
