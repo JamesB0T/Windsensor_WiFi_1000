@@ -1,6 +1,6 @@
 **20210811 firmware_V1.11.wsb {+ (stable) +}**
 
-* Fix for hanging I2C bus if the AS5600 is not present
+* Fix for hanging I2C bus if the AS5600 is not present by WiFi1000 wind sensor
 * Fix jumping direction values by using AS5600
 * Rename the wind sensor types and add two new sensors:
 	old: (NOWA1000|Udo1|Udo2)
@@ -14,7 +14,7 @@
 
 **20210805 firmware_V1.10.wsb {- (critical) -}**
 
-* Add two new wind sensor types (Udo1 and [Udo2](https://github.com/jukolein/NMEA0183-Windsensor))
+* Add two new wind sensor types [Udo1](https://www.thingiverse.com/thing:2261719) and [Udo2](https://github.com/jukolein/NMEA0183-Windsensor))
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
 **20210501 firmware_V1.09.wsb {+ (old) +}**
