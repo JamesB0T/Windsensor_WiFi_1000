@@ -14,7 +14,7 @@
 
 **20210805 firmware_V1.10.wsb {- (critical) -}**
 
-* Add two new wind sensor types ([Udo1](https://www.thingiverse.com/thing:2261719) and [Udo2](https://github.com/jukolein/NMEA0183-Windsensor))
+* Add two new wind sensor types ([Yachta](https://www.thingiverse.com/thing:2261719) and [Jukolein](https://github.com/jukolein/NMEA0183-Windsensor))
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
 
 **20210501 firmware_V1.09.wsb {+ (old) +}**
