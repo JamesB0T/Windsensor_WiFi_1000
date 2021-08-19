@@ -52,6 +52,7 @@ void calculationData(){
       if(i2cready == 1){
         magnitude = ams5600.getMagnitude();
         magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+        // Limiting values outer range
         if(magsensor < 0){
           magsensor = 0;
         }
@@ -72,6 +73,17 @@ void calculationData(){
     else{
       winddirection = rawwinddirection + actconf.offset;
     }
+    
+    // Limiting max deviations between two measuring values of wind direction
+    if(abs(winddirection - winddirection_old) > maxwinddirdev && winddirection > maxwinddirdev && winddirection < 360 -maxwinddirdev){
+      if(winddirection - winddirection_old > 0){
+        winddirection = winddirection_old + maxwinddirdev;
+      }
+      else{
+        winddirection = winddirection_old - maxwinddirdev;
+      }
+    }
+    winddirection_old = winddirection;
     
     // Wind direction 0...180° for each boat side
     if(winddirection >= 0 && winddirection <= 180){

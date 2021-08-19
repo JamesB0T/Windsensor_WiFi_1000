@@ -75,6 +75,8 @@ volatile float term1;             // 1te term
 volatile float rawwinddirection;  // Wind direction 0...360[°] in relation to midle of ship line (midle = 0°) without offset
 volatile float winddirection;     // Wind direction 0...360[°] in relation to midle of ship line (midle = 0°) with offset
 volatile float winddirection2;    // Wind direction 0...180[°] in relation to midle of ship line (midle = 0°) for each boat side with offet
+volatile float winddirection_old; // Last wind direction 0...360[°] in relation to midle of ship line (midle = 0°) with offset
+static float maxwinddirdev = 45;  // Maximum of wind direction deviation in [°] between two measuring values  
 volatile float dirresolution;     // Resolution of wind direction [°]
 volatile int sensor1;             // Output hallsensor signal for wind speed (Web interface)
 volatile int sensor2;             // Output hallsensor signal for wind direction (Web interface)
