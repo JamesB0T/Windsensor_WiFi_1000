@@ -12,9 +12,7 @@ I modified the circuit and used two hall sensors instead. An ESP8266-E12 microco
 
 If you like to help or consider this project useful, please donate. Thanks for your support!
 
-![Donate](Pictures/Donate.gif)
-
-[Donate with PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5QZJZBM252F2L)
+[![Donate](Pictures/Donate.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5QZJZBM252F2L)
 
 For a first impression see the videos:
 
@@ -131,7 +129,7 @@ I have completed many tasks but still not everything is perfect so far.
     - [ ] IPX6 Water resistance test
     - [x] UV radiation test
     - [x] Long time test
-    - [ ] Test with auto pilot
+    - [x] Test with auto pilot
     - [x] User experiences
 - [ ] Extensions
     - [x] Multi function display with M5Stack
