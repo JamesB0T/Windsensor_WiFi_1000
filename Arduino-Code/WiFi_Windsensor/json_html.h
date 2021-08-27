@@ -218,25 +218,68 @@ String JSON()
     content += String(pcounter);
     content +=F( ",");
     content +=F( "\"Unit\": \"n\"");
-    content +=F( "},");   
+    content +=F( "},");
+       
     content +=F( "\"Time1\": {");
     content +=F( "\"Value\": ");
     content += String(time1);
     content +=F( ",");
     content +=F( "\"Unit\": \"ms\"");
     content +=F( "},");
+    
     content +=F( "\"Time2\": {");
     content +=F( "\"Value\": ");
     content += String(time2);
     content +=F( ",");
     content +=F( "\"Unit\": \"ms\"");
     content +=F( "},");
+    
     content +=F( "\"RotationSpeed\": {");
     content +=F( "\"Value\": ");
     content += String(windspeed_hz);
     content +=F( ",");
     content +=F( "\"Unit\": \"rps\"");
+    content +=F( "},");
+
+    content +=F( "\"AirTemperature\": {");
+    content +=F( "\"Value\": ");
+    content += String(airtemperature);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"°");
+    content += String(actconf.tempUnit);
+    content +=F( "\"");
+    content +=F( "},");
+
+    content +=F( "\"AirPressure\": {");
+    content +=F( "\"Value\": ");
+    content += String(airpressure);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"mbar\"");
+    content +=F( "},");
+
+    content +=F( "\"AirHumidity\": {");
+    content +=F( "\"Value\": ");
+    content += String(airhumidity);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"%\"");
+    content +=F( "},");
+
+    content +=F( "\"Dewpoint\": {");
+    content +=F( "\"Value\": ");
+    content += String(dewpoint);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"°");
+    content += String(actconf.tempUnit);
+    content +=F( "\"");
+    content +=F( "},");
+
+    content +=F( "\"Altitude\": {");
+    content +=F( "\"Value\": ");
+    content += String(altitude);
+    content +=F( ",");
+    content +=F( "\"Unit\": \"m\"");
     content +=F( "}");
+    
     content +=F( "},");
     content +=F( "\"NMEAValues\": {");
     content +=F( "\"String1\": \"");

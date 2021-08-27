@@ -1,4 +1,14 @@
-**20210819 firmware_V1.12.wsb {+ (stable) +}**
+**20210827 firmware_V1.13.wsb {+ (stable) +}**
+
+* Support for modifyed wind sensor Ventus W132
+* New values for device informations page
+* New values for Wind Values page
+* Support BME280 and DS18B20
+* New NMEA0183 custom telegram WSE for BME280
+* Solved problem for TCP telegram transmission (remove CR for unselected telegrams)
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+**20210819 firmware_V1.12.wsb {+ (old) +}**
 
 * Secure function for autopilot (limit and reduce jumping measured values)
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)

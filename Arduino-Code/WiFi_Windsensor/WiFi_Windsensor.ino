@@ -31,6 +31,8 @@
 #include <WString.h>        // Needs for structures
 #include <OneWire.h>        // 1Wire network lib
 #include <Wire.h>           // Lib for I2C
+#include <Adafruit_Sensor.h>// Adafuit sensor lib
+#include <Adafruit_BME280.h>// Lib for BME280
 #include <AS5600.h>         // Lib for magnetic rotation sensor AS5600
 #include <DallasTemperature.h>// Dallas 1Wire lib
 #include <SimplyAtomic.h>   // This library includes the ATOMIC_BLOCK macro
@@ -38,6 +40,9 @@
 #include "Definitions.h"    // Local definitions in additional file
 
 AMS_5600 ams5600;           // Declare magnetic rotation sensor AS5600
+Adafruit_BME280 bme;        // Declare environment sensor BME280
+OneWire oneWire(ONE_WIRE_BUS); // Declare 1Wire
+DallasTemperature DS18B20(&oneWire); // Declare DS18B20
 configData actconf;         // Actual configuration, Global variable
                             // Overload with old EEPROM configuration by start. It is necessarry for port and serspeed
                             // Don't change the position!
@@ -83,8 +88,9 @@ WiFiServer server(actconf.dataport);  // Declare WiFi NMEA server port
 // Setup section
 //*********************************************************************************************
 void setup() {
-   // Start I2C Bus
-   Wire.begin();
+   // Start bus systems
+   Wire.begin();                        // Start I2C
+   bme.begin(i2cAddressBME280);         // Start BME280
 
    // !!!!!! Uncomment this line if you using a new configuration structure !!!!!!
 //  saveEEPROMConfig(defconf);
@@ -113,7 +119,7 @@ void setup() {
     saveEEPROMConfig(actconf);
   }
  
-  // Pin definitions and settings for other wind sensor types
+  // Pin definitions and settings for wind sensor types Yachta and Jukolein
   if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
     
     // Pin redefinition for other wind sensor types (Original values see Definition.h)
@@ -125,8 +131,20 @@ void setup() {
     // New pins
     int SCL = 5;                // Wind direction magnetic sensor SCL GPIO 5 (AS5600) (D1)
     int SDA = 4;                // Wind direction magnetic sensor SDA GPIO 4 (AS6500) (D2)
+  }
 
-    //Magnetic rotation sensor AS5600
+  // Pin definitions and settings for wind sensor types Ventus
+  if(String(actconf.windSensorType) == "Ventus"){
+    
+    // Pin redefinition for other wind sensor types (Original values see Definition.h)
+    // Attention! GPIO 15 is not available! (1Wire)
+    // Existing pins
+    ledPin = 2;                 // LED GPIO 2 (D4)
+    INT_PIN1 = 14;              // Wind speed GPIO 14 (Reed switch) (D5), pin need 10k and 100n for spike reduction
+    INT_PIN2 = 16;              // Wind direction GPIO 16 (Hall sensor fake) (D0)
+    // New pins
+    int SCL = 5;                // Wind direction magnetic sensor SCL GPIO 5 (AS5600) (D1)
+    int SDA = 4;                // Wind direction magnetic sensor SDA GPIO 4 (AS6500) (D2)
   }
   
   // Pin settings
@@ -182,21 +200,21 @@ void setup() {
     DebugPrintln(3, INT_PIN2);
     DebugPrintln(3, "Value Range [°]: 0...360");
   }
-  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein" || String(actconf.windSensorType) == "Ventus"){
     DebugPrintln(3, "Wind direction: AS5600");
     DebugPrint(3, "SCL: GPIO ");
     DebugPrintln(3, SCL);
     DebugPrint(3, "SDA: GPIO ");
     DebugPrintln(3, SDA);
     DebugPrint(3, "Scan I2C at address 0x");
-    if (address < 0x10) {
+    if (i2cAddressAS5600 < 0x10) {
       DebugPrint(3, "0");
     }
-    DebugPrint(3, String(address, HEX));
+    DebugPrint(3, String(i2cAddressAS5600, HEX));
     DebugPrint(3, ": ");
-    Wire.beginTransmission(address);
+    Wire.beginTransmission(i2cAddressAS5600);
     if(Wire.endTransmission() == 0){
-      i2cready = 1;                               // Result I2C scan
+      i2creadyAS5600 = 1;                        // Result I2C scan
       DebugPrintln(3, "ready");
       DebugPrint(3, "Magnitude [1]: ");
       DebugPrintln(3, ams5600.getMagnitude());
@@ -205,9 +223,44 @@ void setup() {
       DebugPrintln(3, magsensor);
     }
     else{
-      i2cready = 0;                               // Result I2C scan
+      i2creadyAS5600 = 0;                        // Result I2C scan
       DebugPrintln(3, "error");
-      DebugPrintln(3, "Stop I2C, no device AS5600");
+      DebugPrintln(3, "Stop I2C for device AS5600");
+    }
+  }
+  if(String(actconf.windSensorType) == "Ventus"){
+    DebugPrintln(3, "Environment Sensor: BME280");
+    DebugPrint(3, "SCL: GPIO ");
+    DebugPrintln(3, SCL);
+    DebugPrint(3, "SDA: GPIO ");
+    DebugPrintln(3, SDA);
+    DebugPrint(3, "Scan I2C at address 0x");
+    if (i2cAddressBME280 < 0x10) {
+      DebugPrint(3, "0");
+    }
+    DebugPrint(3, String(i2cAddressBME280, HEX));
+    DebugPrint(3, ": ");
+    Wire.beginTransmission(i2cAddressBME280);
+    if(Wire.endTransmission() == 0){
+      i2creadyBME280 = 1;                        // Result I2C scan
+      DebugPrintln(3, "ready");
+      DebugPrint(3, "Temperature [°C]: ");
+      airtemperature = bme.readTemperature();
+      DebugPrintln(3, airtemperature);      
+      DebugPrint(3, "Air Pressure [mbar]: ");
+      airpressure = bme.readPressure() / 100;
+      DebugPrintln(3, airpressure);
+      DebugPrint(3, "Air Humidity [%]: ");
+      airhumidity = bme.readHumidity();
+      DebugPrintln(3, airhumidity);
+      DebugPrint(3, "Altitude [m]: ");
+      altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
+      DebugPrintln(3, altitude);
+    }
+    else{
+      i2creadyBME280 = 0;                        // Result I2C scan
+      DebugPrintln(3, "error");
+      DebugPrintln(3, "Stop I2C for device BME280");
     }
   }
     
@@ -331,13 +384,14 @@ void setup() {
   Timer5.attach_ms(500, winddata);              // Start Timer all 500ms for wind data calculation
   
   // Work around for start problem by high wind speed > 7rpm (cyclic boot loop)
-  // Start interrupts at first in low level mode and wait 4s then change in falling slope mode
+  // Start interrupts at first in low level mode and wait 4s then change in falling slope mode 
   attachInterrupt(INT_PIN1, interruptRoutine1, LOW); // Start interrupt for wind speed
   attachInterrupt(INT_PIN2, interruptRoutine2, LOW); // Start Interrupt for wind direction
   delay(4000);
   // Start interrupts in falling slope mode
   attachInterrupt(INT_PIN1, interruptRoutine1, FALLING); // Start interrupt for wind speed
   attachInterrupt(INT_PIN2, interruptRoutine2, FALLING); // Start Interrupt for wind direction
+
   //**************************************************
    
   // Reset the time variables
@@ -390,11 +444,20 @@ void loop() {
       DebugPrintln(3, i);
           
       if((int(actconf.serverMode) == 0) || (int(actconf.serverMode) == 1) || (int(actconf.serverMode) == 4)){
-        client.println(sendMWV(1));  // Send NMEA telegrams
-        client.println(sendVWR(1));
-        client.println(sendVPW(1));
-        client.println(sendINF(1));
-        client.println(sendWST(1));
+         if(int(actconf.windSensor) == 1){
+          client.println(sendMWV(1));  // Send NMEA telegrams
+          client.println(sendVWR(1));
+          client.println(sendVPW(1));
+          client.println(sendINF(1));
+         }
+        if(int(actconf.tempSensor) == 1){
+          if(String(actconf.tempSensorType) == "DS18B20"){
+            client.println(sendWST(1));
+          }
+          if(String(actconf.tempSensorType) == "BME280"){
+            client.println(sendWSE(1));
+          }    
+        } 
       }
          
       flashLED(10);                 // Flash LED for data transmission
@@ -410,11 +473,20 @@ void loop() {
       DebugPrintln(3, i);
       
       if((int(actconf.serverMode) == 0) || (int(actconf.serverMode) == 1) || (int(actconf.serverMode) == 4)){
-        client.println(sendMWV(1));  // Send NMEA telegrams
-        client.println(sendVWR(1));
-        client.println(sendVPW(1));
-        client.println(sendINF(1));
-        client.println(sendWST(1));
+        if(int(actconf.windSensor) == 1){
+          client.println(sendMWV(1));  // Send NMEA telegrams
+          client.println(sendVWR(1));
+          client.println(sendVPW(1));
+          client.println(sendINF(1));
+        }
+        if(int(actconf.tempSensor) == 1){
+          if(String(actconf.tempSensorType) == "DS18B20"){
+            client.println(sendWST(1));
+          }
+          if(String(actconf.tempSensorType) == "BME280"){
+            client.println(sendWSE(1));
+          }    
+        }
       }
            
       flashLED(10);                 // Flash LED for data transmission

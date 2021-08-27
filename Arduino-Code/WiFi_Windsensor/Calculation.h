@@ -8,6 +8,25 @@ int roundFloat2Int(float x)
   return (int)(x - 0.5);
 }
 
+// Convert °C to °F
+float convertCtoF(float value){
+ float fahrenheit = (value * 9 / 5) + 32;
+ return fahrenheit;
+}
+
+// Dewpoint calculation
+// Refer: https://de.wikipedia.org/wiki/Taupunkt
+float dewp(float temp, float humidity) {
+  float K1 = 6.112;   // [hPa]
+  float K2 = 17.62;   // [1]
+  float K3 = 243.12;  // [°C]
+  float term1 = (K2 * temp) / (K3 + temp);
+  float term2 = (K2 * K3) / (K3 + temp);
+  float term3 = log(humidity / 100);                  // Humidiy range 0...1
+  float dewp = K3 *((term1 + term3)/(term2 - term3));
+  return dewp;
+}
+
 void calculationData(){
   // Atomic Block (not interruptible)
   ATOMIC(){
@@ -29,6 +48,22 @@ void calculationData(){
       fieldstrength = 0;
       quality = 0;
     }
+
+    // Find DS18B20
+    if(DS18B20.getDeviceCount() > 0){
+      DS18B20.requestTemperatures();
+      // Read device temperature 1Wire DS18B20
+      if(String(actconf.tempSensorType) == "DS18B20"){
+        temperature = float(DS18B20.getTempCByIndex(0));
+      }
+      else{
+        temperature = float(DS18B20.getTempFByIndex(0));
+      }
+    }
+    // Dont find a DS18B20
+    else{
+      temperature = -127;
+    }
     
     // time1 = time in [ms] for one rotation
     // time2 = time in [ms] between wind speed sensor and wind direction sensor
@@ -46,10 +81,11 @@ void calculationData(){
       magnitude = 0; // Set values for AS5600
       magsensor = 0;
     }
-    // Calculate wind direction for Yachta and Jukolein wind sensor
+    
+    // Calculate wind direction for Yachta, Jukolein and Ventus wind sensor
     if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
       // Read only magnetic values if the I2C device is ready
-      if(i2cready == 1){
+      if(i2creadyAS5600 == 1){
         magnitude = ams5600.getMagnitude();
         magsensor = ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
         // Limiting values outer range
@@ -66,6 +102,50 @@ void calculationData(){
       }
       rawwinddirection = magsensor;
     }
+
+    // Calculate wind direction for Ventus wind sensor (Attention! Inverse rotation because the AS5600 measure on bottom side)
+    if(String(actconf.windSensorType) == "Ventus"){
+      // Read only magnetic values if the I2C device is ready
+      if(i2creadyAS5600 == 1){
+        magnitude = ams5600.getMagnitude();
+        magsensor = 360 - ams5600.getRawAngle() * 0.087; // 0...4096 which is 0.087 of a degree
+        // Limiting values outer range
+        if(magsensor < 0){
+          magsensor = 0;
+        }
+        if(magsensor > 360){
+          magsensor = 360;
+        }
+      }
+      else{
+        magnitude = 0;
+        magsensor = 0;
+      }
+      rawwinddirection = magsensor;
+      
+      if(i2creadyBME280 == 1 && String(actconf.tempSensorType) == "BME280"){
+        if(String(actconf.tempUnit) == "C"){
+          airtemperature = bme.readTemperature();
+        }
+        else{
+          airtemperature = convertCtoF(bme.readTemperature());
+        }
+        airpressure = bme.readPressure() / 100;
+        airhumidity = bme.readHumidity();
+        dewpoint = dewp(airtemperature, airhumidity);
+        altitude = bme.readAltitude(SEALEVELPRESSURE_HPA);
+      }
+      else{
+        airtemperature = 0;
+        airpressure = 0;
+        airhumidity = 0;
+        dewpoint = 0;
+        altitude = 0;
+      }
+      rawwinddirection = magsensor;
+      
+    }
+    
     // Wind direction with offset
     if((rawwinddirection + actconf.offset) > 360){
       winddirection = rawwinddirection + actconf.offset - 360;
@@ -101,12 +181,12 @@ void calculationData(){
       }
     }
     // Calculate wind direction resolution for Yachta and Jukolein wind sensor
-    if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+    if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein" || String(actconf.windSensorType) == "Ventus"){
       dirresolution = 0.087;
     }
     // Calculate only wind speed when time values ok
     if(time1_avg < 1000 && time2_avg < 1000){
-      if(String(actconf.windSensorType) == "WiFi 1000"){
+      if(String(actconf.windSensorType) == "WiFi 1000" || String(actconf.windSensorType) == "Ventus"){
         // Wind speed n[Hz] = 1 / time1[ms] *1000  // 1 pulse per round
         windspeed_hz = 1.0 / time1_avg * 1000;
       }
@@ -135,6 +215,11 @@ void calculationData(){
       // Wind speed, v[m/s] = (2 * Pi * n[Hz] * r[m]) / lamda[1]
       windspeed_mps = (2 * pi * windspeed_hz * radius2) / lamda;
     }
+    if(String(actconf.windSensorType) == "Ventus"){
+      // Wind speed, v[m/s] = (2 * Pi * n[Hz] * r[m]) / lamda[1]
+      windspeed_mps = (2 * pi * windspeed_hz * radius3) / lamda;
+    }
+    
     // Calibration of wind speed data
     windspeed_mps = windspeed_mps * actconf.calslope + actconf.caloffset;
     // Wind speed, v[km/h] = v[m/s] * 3.6
@@ -183,6 +268,12 @@ void simulationData(){
 
      magnitude = int(random(300, 450));
      magsensor = int(random(0, 360));
+
+     airtemperature = float(random(210, 230)) / 10;
+     airpressure = float(random(9000, 10100)) / 10;
+     airhumidity = float(random(700, 800)) / 10;
+     dewpoint = float(random(10, 150)) / 10;
+     altitude = float(random(500, 560)) / 10;
      
 //**************************************************************************
 

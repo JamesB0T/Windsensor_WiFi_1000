@@ -102,13 +102,13 @@ httpServer.on("/favicon.ico", []() {
 
 httpServer.on("/css", []() {
   String content = CSS();
-   httpServer.sendHeader("Cache-Control", "max-age=1");
+   httpServer.sendHeader("Cache-Control", "no-cache");
   httpServer.send(200, "text/css", content);
 });
 
 httpServer.on("/js", []() {
   String content = JS();
-  httpServer.sendHeader("Cache-Control", "max-age=1");
+  httpServer.sendHeader("Cache-Control", "no-cache");
   httpServer.send(200, "text/javascript", content);
 });
 

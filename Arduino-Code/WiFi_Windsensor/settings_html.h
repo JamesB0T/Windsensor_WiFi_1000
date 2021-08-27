@@ -527,7 +527,6 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<option value='WiFi 1000'>WiFi 1000</option>");
     content += F("<option value='Yachta'>Yachta</option>");
     content += F("<option value='Jukolein'>Jukolein</option>");
-    content += F("<option value='Davis'>Davis</option>");
     content += F("<option value='Ventus'>Ventus</option>");
     content += F("</select>");
     content += F("</td>");
@@ -631,6 +630,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<select name='tstype' size='1'>");
     content += F("<option value='Off'>Off</option>");
     content += F("<option value='DS18B20'>DS18B20</option>");
+    content += F("<option value='BME280'>BME280</option>");
     content += F("</select>");
     content += F("</td>");
     content += F("<td></td>");

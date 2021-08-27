@@ -172,11 +172,13 @@ String Devinfo()
  content +=F( "<td></td>");
  content +=F( "</tr>");
  
- content +=F( "<tr>");
- content +=F( "<td>Device Temperature</td>");
- content +=F( "<td><input id='temp' type='text' name='wstemp' size='15' value='0'></td>");
- content +=F( "<td>[<data id='tunit'></data>]</td>");
- content +=F( "</tr>");
+ if(String(actconf.tempSensorType) == "DS18B20"){
+   content +=F( "<tr>");
+   content +=F( "<td>Device Temperature</td>");
+   content +=F( "<td><input id='temp' type='text' name='wstemp' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='tunit'></data>]</td>");
+   content +=F( "</tr>");
+ }
 
  content +=F( "<tr>");
  content +=F( "<td>Wind Direction</td>");
@@ -234,7 +236,7 @@ String Devinfo()
    content +=F( "</tr>");
  }
 
- if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+ if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein" || String(actconf.windSensorType) == "Ventus"){
    content +=F( "<tr>");
    content +=F( "<td>Magn. Flux Density</td>");
    content +=F( "<td><input id='magnitude' type='text' name='magnitude' size='15' value='0'></td>");
@@ -253,6 +255,32 @@ String Devinfo()
  content +=F( "<td><input id='rotspeed' type='text' name='wrotspeed' size='15' value='0'></td>");
  content +=F( "<td>[<data id='rotunit'></data>]</td>");
  content +=F( "</tr>");
+
+ if(String(actconf.windSensorType) == "Ventus" && String(actconf.tempSensorType) == "BME280"){
+   content +=F( "<tr>");
+   content +=F( "<td><h3>BME280 Informations<br><blink><data id='info2'></data></blink></h3></td>");
+   content +=F( "<td></td>");
+   content +=F( "<td></td>");
+   content +=F( "</tr>");
+   
+   content +=F( "<tr>");
+   content +=F( "<td>Air Temperature</td>");
+   content +=F( "<td><input id='atemp' type='text' name='atemp' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='aunit'></data>]</td>");
+   content +=F( "</tr>");
+  
+   content +=F( "<tr>");
+   content +=F( "<td>Air Pressure</td>");
+   content +=F( "<td><input id='pres' type='text' name='pres' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='punit'></data>]</td>");
+   content +=F( "</tr>");
+  
+   content +=F( "<tr>");
+   content +=F( "<td>Air Humidity</td>");
+   content +=F( "<td><input id='hum' type='text' name='hum' size='15' value='0'></td>");
+   content +=F( "<td>[<data id='humunit'></data>]</td>");
+   content +=F( "</tr>");
+ }
  
  content +=F( "</table>");
 

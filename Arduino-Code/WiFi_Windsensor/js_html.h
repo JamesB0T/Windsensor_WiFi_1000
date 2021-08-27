@@ -60,9 +60,12 @@ String JS()
  content +=F( "document.getElementById('qunit').innerHTML = myObj.Device.NetworkParameter.ConnectionQuality.Unit;");
  content +=F( "document.getElementById('quality2').innerHTML = myObj.Device.NetworkParameter.ConnectionQuality.Value;");
  
- content +=F( "temp = document.getElementById('temp');");
- content +=F( "temp.value = myObj.Device.MeasuringValues.DeviceTemperature.Value;");
- content +=F( "document.getElementById('tunit').innerHTML = myObj.Device.MeasuringValues.DeviceTemperature.Unit;");
+ if(String(actconf.tempSensorType) == "DS18B20"){
+   content +=F( "temp = document.getElementById('temp');");
+   content +=F( "temp.value = myObj.Device.MeasuringValues.DeviceTemperature.Value;");
+   content +=F( "document.getElementById('tunit').innerHTML = myObj.Device.MeasuringValues.DeviceTemperature.Unit;");
+ }
+ 
  content +=F( "winddir = document.getElementById('winddir');");
  content +=F( "winddir.value = myObj.Device.MeasuringValues.WindDirection.Value;");
  content +=F( "document.getElementById('dirunit').innerHTML = myObj.Device.MeasuringValues.WindDirection.Unit;");
@@ -92,7 +95,7 @@ String JS()
    content +=F( "time2.value = myObj.Device.MeasuringValues.Time2.Value;");
    content +=F( "document.getElementById('t2unit').innerHTML = myObj.Device.MeasuringValues.Time2.Unit;");
  }
- if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+ if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein" || String(actconf.windSensorType) == "Ventus"){
    content +=F( "magnitude = document.getElementById('magnitude');");
    content +=F( "magnitude.value = myObj.Device.MeasuringValues.MagFluxDensity.Value;");
    content +=F( "document.getElementById('magnitudeunit').innerHTML = myObj.Device.MeasuringValues.MagFluxDensity.Unit;");
@@ -100,6 +103,19 @@ String JS()
    content +=F( "magsensor = document.getElementById('magsensor');");
    content +=F( "magsensor.value = myObj.Device.MeasuringValues.MagnetSensor.Value;");
    content +=F( "document.getElementById('magunit').innerHTML = myObj.Device.MeasuringValues.MagnetSensor.Unit;");
+ }
+ if(String(actconf.windSensorType) == "Ventus" && String(actconf.tempSensorType) == "BME280"){
+   content +=F( "atemp = document.getElementById('atemp');");
+   content +=F( "atemp.value = myObj.Device.MeasuringValues.AirTemperature.Value;");
+   content +=F( "document.getElementById('aunit').innerHTML = myObj.Device.MeasuringValues.AirTemperature.Unit;");
+
+   content +=F( "pres = document.getElementById('pres');");
+   content +=F( "pres.value = myObj.Device.MeasuringValues.AirPressure.Value;");
+   content +=F( "document.getElementById('punit').innerHTML = myObj.Device.MeasuringValues.AirPressure.Unit;");
+
+   content +=F( "hum = document.getElementById('hum');");
+   content +=F( "hum.value = myObj.Device.MeasuringValues.AirHumidity.Value;");
+   content +=F( "document.getElementById('humunit').innerHTML = myObj.Device.MeasuringValues.AirHumidity.Unit;");
  }
  content +=F( "rotspeed = document.getElementById('rotspeed');");
  content +=F( "rotspeed.value = myObj.Device.MeasuringValues.RotationSpeed.Value;");
@@ -136,6 +152,7 @@ String JS()
  content += F("servermode = myObj.Device.NetworkParameter.ServerMode;");
  content += F("if (servermode == 4) {");
  content += F("document.getElementById('info').innerHTML = '(Demo Mode)';");
+ content += F("document.getElementById('info2').innerHTML = '(Demo Mode)';");
  content += F("}");
  content += F("else {");
  content += F("document.getElementById('info').innerHTML = '';");
