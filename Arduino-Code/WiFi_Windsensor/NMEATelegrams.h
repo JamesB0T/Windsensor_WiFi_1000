@@ -147,33 +147,16 @@ String sendWST(int sendmode){
   String NMEASensorTemp;
   String SendSensorTemp;
   
-  String tempc;
-  String tempf;
-  // Find DS18B20
-  if(DS18B20.getDeviceCount() > 0){
-    DS18B20.requestTemperatures(); 
-    tempc = String(DS18B20.getTempCByIndex(0));
-    tempf = String(DS18B20.getTempFByIndex(0));
-  }
-  else{
-    tempc = -127;
-    tempf = -127;
-  }
-  
   // Create NMEA string for wind sensor temperature $PWWST,C,0,x.x,A*hh<CR><LF>
   if(String(actconf.tempUnit) == "C"){
     NMEASensorTemp = "PWWST,C," + String(actconf.sensorID);
     NMEASensorTemp += ",";
-    NMEASensorTemp += String(tempc);
-    DebugPrint(3, "Sensor Temp [°C]:");
-    DebugPrintln(3, tempc);
+    NMEASensorTemp += String(temperature);
   }
   else{
     NMEASensorTemp = "PWWST,F," + String(actconf.sensorID);
     NMEASensorTemp += ",";
-    NMEASensorTemp += String(tempf);
-    DebugPrint(3, "Sensor Temp [°F]:");
-    DebugPrintln(3, tempf);
+    NMEASensorTemp += String(temperature);
   }
   NMEASensorTemp += ",A";
   // Build CheckSum

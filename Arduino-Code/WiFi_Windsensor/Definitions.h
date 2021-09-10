@@ -26,7 +26,7 @@ volatile bool flag3 = false;      // Flag for zero wind speed detection (true = 
 int ledPin = 2;                   // LED low activ GPIO 2 (D4)
 int INT_PIN1 = 5;                 // Wind speed GPIO 5 (Hall sensor) (D1)
 int INT_PIN2 = 4;                 // Wind direction GPIO 4 (Hall sensor) (D2)
-int ONE_WIRE_BUS = 15;            // 1Wire bus on GPIO 15 (D8)
+int ONE_WIRE_BUS = 12;            // 1Wire bus on GPIO 12 (D6)
 
 // I2C definitions
 int i2creadyAS5600 = 0;           // Result of I2C scan for AS5600

@@ -1,4 +1,12 @@
-**20210827 firmware_V1.13.wsb {+ (stable) +}**
+**20210910 firmware_V1.14.wsb {+ (stable) +}**
+
+* Support for new PCB for wind sensor Yachta
+* 1Wire pin canged from GPIO15 to GPIO12 (new PCB)
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+{- Attention! No support for old PCB from Udo for wind sensor Yachta. -}
+
+**20210827 firmware_V1.13.wsb {+ (old) +}**
 
 * Support for modifyed wind sensor Ventus W132
 * New values for device informations page

@@ -120,10 +120,10 @@ void setup() {
   }
  
   // Pin definitions and settings for wind sensor types Yachta and Jukolein
-  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Jukolein"){
+  if(String(actconf.windSensorType) == "Jukolein"){
     
     // Pin redefinition for other wind sensor types (Original values see Definition.h)
-    // Attention! GPIO 15 is not available! (1Wire)
+    // Attention! GPIO 12 is not available! (1Wire)
     // Existing pins
     ledPin = 14;                // LED GPIO 14 (fake) (D5)
     INT_PIN1 = 2;               // Wind speed GPIO 2 (Hall sensor) (D4)
@@ -134,10 +134,10 @@ void setup() {
   }
 
   // Pin definitions and settings for wind sensor types Ventus
-  if(String(actconf.windSensorType) == "Ventus"){
+  if(String(actconf.windSensorType) == "Yachta" || String(actconf.windSensorType) == "Ventus"){
     
     // Pin redefinition for other wind sensor types (Original values see Definition.h)
-    // Attention! GPIO 15 is not available! (1Wire)
+    // Attention! GPIO 12 is not available! (1Wire)
     // Existing pins
     ledPin = 2;                 // LED GPIO 2 (D4)
     INT_PIN1 = 14;              // Wind speed GPIO 14 (Reed switch) (D5), pin need 10k and 100n for spike reduction

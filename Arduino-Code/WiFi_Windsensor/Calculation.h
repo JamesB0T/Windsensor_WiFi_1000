@@ -49,22 +49,16 @@ void calculationData(){
       quality = 0;
     }
 
-    // Find DS18B20
-    if(DS18B20.getDeviceCount() > 0){
-      DS18B20.requestTemperatures();
-      // Read device temperature 1Wire DS18B20
-      if(String(actconf.tempSensorType) == "DS18B20"){
-        temperature = float(DS18B20.getTempCByIndex(0));
-      }
-      else{
-        temperature = float(DS18B20.getTempFByIndex(0));
-      }
+    // Read out DS18B20
+    DS18B20.requestTemperatures();
+    // Read device temperature 1Wire DS18B20
+    if(String(actconf.tempSensorType) == "DS18B20"){
+      temperature = float(DS18B20.getTempCByIndex(0));
     }
-    // Dont find a DS18B20
     else{
-      temperature = -127;
+      temperature = float(DS18B20.getTempFByIndex(0));
     }
-    
+
     // time1 = time in [ms] for one rotation
     // time2 = time in [ms] between wind speed sensor and wind direction sensor
     if(time1_avg == 0){
