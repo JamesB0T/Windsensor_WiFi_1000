@@ -49,14 +49,15 @@ void calculationData(){
       quality = 0;
     }
 
-    // Read out DS18B20
-    DS18B20.requestTemperatures();
     // Read device temperature 1Wire DS18B20
     if(String(actconf.tempSensorType) == "DS18B20"){
-      temperature = float(DS18B20.getTempCByIndex(0));
-    }
-    else{
-      temperature = float(DS18B20.getTempFByIndex(0));
+      DS18B20.requestTemperatures();
+      if(String(actconf.tempUnit) == "C"){
+        temperature = float(DS18B20.getTempCByIndex(0));
+      }
+      else{
+        temperature = float(DS18B20.getTempFByIndex(0));
+      }
     }
 
     // time1 = time in [ms] for one rotation
