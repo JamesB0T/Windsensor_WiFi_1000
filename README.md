@@ -133,8 +133,8 @@ I have completed many tasks but still not everything is perfect so far.
     - [x] User experiences
 - [ ] Extensions
     - [x] Multi function display with M5Stack
-    - [ ] NMEA2000 Gateway
-    - [ ] Weather data sensor with BME280
+    - [x] NMEA2000 Gateway
+    - [x] Weather data sensor with BME280
 - [ ] Certification
     - [ ] CE Certification
 
