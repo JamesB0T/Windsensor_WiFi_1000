@@ -1,4 +1,4 @@
-**20210910 firmware_V1.15.wsb {+ (stable) +}**
+**20220520 firmware_V1.15.wsb {+ (stable) +}**
 
 * Fix for wind direction offset (hanging values)
 * Fix for calibration (eliminates negativ values to zero)
