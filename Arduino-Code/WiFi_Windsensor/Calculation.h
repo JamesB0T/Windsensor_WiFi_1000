@@ -142,11 +142,14 @@ void calculationData(){
     }
     
     // Wind direction with offset
+    if((rawwinddirection + actconf.offset) >= 0 && (rawwinddirection + actconf.offset) <= 360){
+      winddirection = rawwinddirection + actconf.offset;
+    }
     if((rawwinddirection + actconf.offset) > 360){
       winddirection = rawwinddirection + actconf.offset - 360;
     }
-    else{
-      winddirection = rawwinddirection + actconf.offset;
+    if((rawwinddirection + actconf.offset) < 0){
+      winddirection = 360 - (abs(actconf.offset) - rawwinddirection);
     }
     
     // Limiting max deviations between two measuring values of wind direction
@@ -217,6 +220,9 @@ void calculationData(){
     
     // Calibration of wind speed data
     windspeed_mps = windspeed_mps * actconf.calslope + actconf.caloffset;
+    if(windspeed_mps < 0){ // Eleminate negativ values and set to zero
+      windspeed_mps = 0;
+    }
     // Wind speed, v[km/h] = v[m/s] * 3.6
     windspeed_kph = windspeed_mps * 3.6;
     // Wind speed, v[kn] = v[m/s] * 1.94384

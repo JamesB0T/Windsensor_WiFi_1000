@@ -1,4 +1,11 @@
-**20210910 firmware_V1.14.wsb {+ (stable) +}**
+**20210910 firmware_V1.15.wsb {+ (stable) +}**
+
+* Fix for wind direction offset (hanging values)
+* Fix for calibration (eliminates negativ values to zero)
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+
+**20210910 firmware_V1.14.wsb {+ (old) +}**
 
 * Support for new PCB for wind sensor Yachta
 * 1Wire pin canged from GPIO15 to GPIO12 (new PCB)
