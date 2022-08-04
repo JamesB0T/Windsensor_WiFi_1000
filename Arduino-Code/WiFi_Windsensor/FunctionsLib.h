@@ -356,6 +356,9 @@ char* toChar(String command){
         char *p = const_cast<char*>(command.c_str());
         return p;
     }
+    else{
+      return 0;
+    }
 }
 
 // Seaching the index for a value in a string array
