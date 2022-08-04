@@ -219,9 +219,8 @@ void calculationData(){
     }
     
     // Calibration of wind speed data
-    windspeed_mps = windspeed_mps * actconf.calslope + actconf.caloffset;
-    if(windspeed_mps < 0){ // Eleminate negativ values and set to zero
-      windspeed_mps = 0;
+    if(windspeed_mps < 0){
+      windspeed_mps = windspeed_mps * actconf.calslope + actconf.caloffset;
     }
     // Wind speed, v[km/h] = v[m/s] * 3.6
     windspeed_kph = windspeed_mps * 3.6;
