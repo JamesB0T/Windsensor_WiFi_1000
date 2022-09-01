@@ -153,7 +153,7 @@ String Settings(int num, String vname[30], String value[30])
    content +=F( "<hr align='left'>");
    
    content +=F( "<h3>Password Required</h3>");
-   content +=F( "<form id='pwdForm' action='settings' method='get'><input size=20 type='text' name='password' id='password' onkeypress='return event.keyCode != 13;'><br/><br/><button TYPE='button' onClick='proc()'>Send</button></form>");
+   content +=F( "<form id='pwdForm' action='settings' method='get'><input size=30 type='text' name='password' id='password' onkeypress='return event.keyCode != 13;'><br/><br/><button TYPE='button' onClick='proc()'>Send</button></form>");
    content +=F( "<br>");
    content +=F( "<hr align='left'>");
    content +=F( "<br>");
@@ -253,11 +253,11 @@ String Settings(int num, String vname[30], String value[30])
     content += F("var valuestring = \"\";");
     content += F("if(iname == \"cssid\"){valuestring = document.SetForm.cssid.value;}");
     content += F("if(iname == \"sssid\"){valuestring = document.SetForm.sssid.value;}");
-    content += F("var reguexp = /[^A-z0-9_-]/;");
-    content += F("if(reguexp.exec(valuestring) || valuestring.length < 1 || valuestring.length > 20)");
+    content += F("var reguexp = /[^\x20-\x7E]/;");
+    content += F("if(reguexp.exec(valuestring) || valuestring.length < 1 || valuestring.length > 30)");
     content += F("{");
     content += F("document.getElementById('sub').disabled = true;");   
-    content += F("alert('Error!\\nUse only a-z, A-Z, 0-9, _-\\nSSID Length 1-20');");
+    content += F("alert('Error!\\nUse only printable ASCII characters\\nSSID Length 1-30');");
     content += F("}");
     content += F("else{");
     content += F("document.getElementById('sub').disabled = false;");
@@ -269,11 +269,11 @@ String Settings(int num, String vname[30], String value[30])
     content += F("if(iname == \"pagepasswd\"){valuestring = document.SetForm.sidepasswd.value;}");
     content += F("if(iname == \"cpasswd\"){valuestring = document.SetForm.cpasswd.value;}");
     content += F("if(iname == \"spasswd\"){valuestring = document.SetForm.spasswd.value;}");
-    content += F("var reguexp = /[^A-z0-9]/;");
-    content += F("if(reguexp.exec(valuestring) || valuestring.length < 8 || valuestring.length > 20)");
+    content += F("var reguexp = /[^\x20-\x7E]/;");
+    content += F("if(reguexp.exec(valuestring) || valuestring.length < 8 || valuestring.length > 30)");
     content += F("{");
     content += F("document.getElementById('sub').disabled = true;");    
-    content += F("alert('Error!\\nUse only a-z, A-Z, 0-9\\nPassword Length 8-20');");
+    content += F("alert('Error!\\nUse only printable ASCII characters\\nPassword Length 8-30');");
     content += F("}");
     content += F("else{");
     content += F("document.getElementById('sub').disabled = false;");
@@ -320,7 +320,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>Page Password</td>");
     content += F("<td><input type='text' required name='pagepasswd' size='20' value='");
     content += String(actconf.password);  
-    content += F("' maxlength='20' onchange='check_passwd(\"pagepasswd\")'></td>");
+    content += F("' maxlength='30' onchange='check_passwd(\"pagepasswd\")'></td>");
     content += F("<td></td>");
     content += F("</tr>");
     
@@ -369,7 +369,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>WLAN Client SSID</td>");
     content += F("<td><input type='text' required name='cssid' size='20' value='");
     content += String(actconf.cssid);
-    content += F("' maxlength='20' onchange='check_ssid(\"cssid\")'></td>");
+    content += F("' maxlength='30' onchange='check_ssid(\"cssid\")'></td>");
     content += F("<td></td>");
     content += F("</tr>");
   
@@ -377,7 +377,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>WLAN Client Password</td>");
     content += F("<td><input type='text' required name='cpasswd' size='20' value='");
     content += String(actconf.cpassword);
-    content += F("' maxlength='20' onchange='check_passwd(\"cpasswd\")'></td>");
+    content += F("' maxlength='30' onchange='check_passwd(\"cpasswd\")'></td>");
     content += F("<td></td>");
     content += F("</tr>");
   
@@ -404,7 +404,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>WLAN Server SSID</td>");
     content += F("<td><input type='text' required name='sssid' size='20' value='");
     content += String(actconf.sssid);
-    content += F("' maxlength='20' onchange='check_ssid(\"sssid\")'></td>");
+    content += F("' maxlength='30' onchange='check_ssid(\"sssid\")'></td>");
     content += F("<td></td>");
     content += F("</tr>");
   
@@ -412,7 +412,7 @@ String Settings(int num, String vname[30], String value[30])
     content += F("<td>WLAN Server Password</td>");
     content += F("<td><input type='text' required name='spasswd' size='20' value='");
     content += String(actconf.spassword);  
-    content += F("' maxlength='20' onchange='check_passwd(\"spasswd\")'></td>");
+    content += F("' maxlength='30' onchange='check_passwd(\"spasswd\")'></td>");
     content += F("<td></td>");
     content += F("</tr>");
 
