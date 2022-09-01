@@ -1,9 +1,15 @@
-**20220520 firmware_V1.15.wsb {+ (stable) +}**
+**20220901 firmware_V1.16.wsb {+ (stable) +}**
+
+* Fix for negativ wind speed when using calibration
+* Fix libs for compiling  with arduino IDE 1.8.19
+* Modification for longer passwords with special character
+* WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
+
+**20220520 firmware_V1.15.wsb {+ (old) +}**
 
 * Fix for wind direction offset (hanging values)
 * Fix for calibration (eliminates negativ values to zero)
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
-
 
 **20210910 firmware_V1.14.wsb {+ (old) +}**
 
