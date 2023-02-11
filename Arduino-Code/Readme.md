@@ -1,4 +1,4 @@
-**20230211 firmware_V1.17.wsb {+ (stable) +}**
+**20220906 firmware_V1.17.wsb {+ (stable) +}**
 
 * Fix for calibration
 * WLAN default settings (SSID: NoWa, Pass: 12345678, IP: 192.168.4.1)
